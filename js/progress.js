@@ -1,7 +1,7 @@
 // Progress, Skills and Badges views. Everything is drawn from state.json (rebuilt nightly
 // from the full raw log) plus today's live events.
-import * as d3 from './vendor/d3.js?v=20261123';
-import { critter, badgeArt, RARITY } from './art.js?v=20261123';
+import * as d3 from './vendor/d3.js?v=20261123b';
+import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261123b';
 
 export const h = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
@@ -88,7 +88,7 @@ export function heroCards(state, dv, { compact } = {}) {
       h('div', { class: 'small' }, `Best ${p.best_streak}. ${nextStreak - p.streak} day(s) to the next streak badge.`)),
     h('div', { class: 'card' }, h('div', { class: 'label' }, 'Zero catch-up wins ⭐'), h('div', { class: 'big' }, s.zero_catchup_days), h('div', { class: 'small' }, 'Days that ended with nothing carried over.')),
     h('div', { class: 'card' }, h('div', { class: 'label' }, 'Rank'),
-      h('div', { style: 'display:flex;gap:10px;align-items:center' }, critter('rank', 'epic', 50),
+      h('div', { style: 'display:flex;gap:10px;align-items:center' }, rankArt(p.rank, 56),
         h('div', {}, h('div', { class: 'big', style: 'font-size:1.25rem' }, p.rank), h('div', { class: 'small' }, `${s.xp_to_next} XP to ${p.next_rank}`))),
       bar(s.rank_pct, 'var(--accent)')));
 }

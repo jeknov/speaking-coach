@@ -49,7 +49,14 @@ export function critter(id, rarity, size) {
 // Illustrated badge image; falls back to the SVG critter if the file is missing.
 export function badgeArt(id, rarity, size) {
   const img = document.createElement('img');
-  Object.assign(img, { src: `img/badges/${id}.webp?v=20261123`, width: size, height: size, alt: '', loading: 'lazy', decoding: 'async', className: 'badge-art' });
+  Object.assign(img, { src: `img/badges/${id}.webp?v=20261123b`, width: size, height: size, alt: '', loading: 'lazy', decoding: 'async', className: 'badge-art' });
   img.addEventListener('error', () => img.replaceWith(critter(id, rarity, size)), { once: true });
   return img;
 }
+
+// Rank card art: one illustrated cat per rank, drawn from the badge set.
+const RANK_ART = {
+  'Mumble Mouse': 'baseline-brave', 'Steady Sparrow': 'songbird', 'Pause Panda': 'pause-applause',
+  'Clear-Voice Crane': 'crystal', 'Silver-Tongued Otter': 'otter', 'Keynote Phoenix': 'phoenix',
+};
+export function rankArt(rank, size) { return badgeArt(RANK_ART[rank] || 'baseline-brave', 'epic', size); }

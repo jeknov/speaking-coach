@@ -1,6 +1,6 @@
-import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261123';
-import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261123';
-import { renderToday, doneMap } from './today.js?v=20261123';
+import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261123b';
+import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261123b';
+import { renderToday, doneMap } from './today.js?v=20261123b';
 
 const $ = (s) => document.querySelector(s);
 const VIEWS = ['today', 'progress', 'skills', 'badges', 'settings'];
