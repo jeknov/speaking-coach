@@ -1,0 +1,2737 @@
+{
+ "generated_at": "sample",
+ "as_of": "2027-02-07",
+ "program": {
+  "today_date": "2027-02-07",
+  "day_number": 70,
+  "week_number": 10,
+  "current_level_id": "L3",
+  "current_level_name": "Level 3 · Prosody",
+  "current_level_planned_end": "2027-02-23",
+  "current_level_expected_end": "2027-02-24",
+  "original_end": "2027-07-11",
+  "projected_end": "2027-07-15",
+  "days_added": 4,
+  "backlog": 2,
+  "total_tasks": 902,
+  "tasks_done": 282,
+  "streak": 29,
+  "best_streak": 31,
+  "xp": 4135,
+  "rank": "Clear-Voice Crane",
+  "rank_floor_xp": 2500,
+  "next_rank": "Silver-Tongued Otter",
+  "next_rank_xp": 4500,
+  "in_baseline": false,
+  "backlog_task_ids": []
+ },
+ "skills": [
+  {
+   "skill_id": "L0",
+   "name": "Level 0 · Baseline",
+   "track": "Main",
+   "seq": 0,
+   "status": "completed",
+   "start_date": "2026-11-23",
+   "end_date": "2026-11-29",
+   "tasks_done": 6,
+   "tasks_total": 6
+  },
+  {
+   "skill_id": "L1",
+   "name": "Level 1 · Voice foundation",
+   "track": "Main",
+   "seq": 1,
+   "status": "completed",
+   "start_date": "2026-11-30",
+   "end_date": "2026-12-28",
+   "tasks_done": 84,
+   "tasks_total": 84
+  },
+  {
+   "skill_id": "L2",
+   "name": "Level 2 · Clarity",
+   "track": "Main",
+   "seq": 2,
+   "status": "completed",
+   "start_date": "2026-12-29",
+   "end_date": "2027-01-26",
+   "tasks_done": 84,
+   "tasks_total": 84
+  },
+  {
+   "skill_id": "L3",
+   "name": "Level 3 · Prosody",
+   "track": "Main",
+   "seq": 3,
+   "status": "in_progress",
+   "start_date": "2027-01-27",
+   "end_date": "2027-02-24",
+   "tasks_done": 40,
+   "tasks_total": 84
+  },
+  {
+   "skill_id": "L4",
+   "name": "Level 4 · Structuring in real time",
+   "track": "Main",
+   "seq": 4,
+   "status": "not_started",
+   "start_date": "2027-02-25",
+   "end_date": "2027-03-24",
+   "tasks_done": 0,
+   "tasks_total": 84
+  },
+  {
+   "skill_id": "L5",
+   "name": "Level 5 · Speaking without notes",
+   "track": "Main",
+   "seq": 5,
+   "status": "not_started",
+   "start_date": "2027-03-25",
+   "end_date": "2027-04-21",
+   "tasks_done": 0,
+   "tasks_total": 112
+  },
+  {
+   "skill_id": "L6",
+   "name": "Level 6 · Conversation integration",
+   "track": "Main",
+   "seq": 6,
+   "status": "not_started",
+   "start_date": "2027-04-22",
+   "end_date": "2027-05-19",
+   "tasks_done": 0,
+   "tasks_total": 112
+  },
+  {
+   "skill_id": "L7",
+   "name": "Level 7 · Presence and persuasion",
+   "track": "Main",
+   "seq": 7,
+   "status": "not_started",
+   "start_date": "2027-05-20",
+   "end_date": "2027-06-16",
+   "tasks_done": 0,
+   "tasks_total": 112
+  },
+  {
+   "skill_id": "L8",
+   "name": "Level 8 · Influence",
+   "track": "Main",
+   "seq": 8,
+   "status": "not_started",
+   "start_date": "2027-06-17",
+   "end_date": "2027-07-15",
+   "tasks_done": 0,
+   "tasks_total": 112
+  },
+  {
+   "skill_id": "C1",
+   "name": "C1 · Active listening",
+   "track": "Conversation",
+   "seq": 1,
+   "status": "completed",
+   "start_date": "2026-11-30",
+   "end_date": "2026-12-28",
+   "tasks_done": 28,
+   "tasks_total": 28
+  },
+  {
+   "skill_id": "C2",
+   "name": "C2 · Emotional cues",
+   "track": "Conversation",
+   "seq": 2,
+   "status": "completed",
+   "start_date": "2026-12-29",
+   "end_date": "2027-01-26",
+   "tasks_done": 28,
+   "tasks_total": 28
+  },
+  {
+   "skill_id": "C3",
+   "name": "C3 · Follow-up craft",
+   "track": "Conversation",
+   "seq": 3,
+   "status": "in_progress",
+   "start_date": "2027-01-27",
+   "end_date": "2027-02-24",
+   "tasks_done": 12,
+   "tasks_total": 28
+  },
+  {
+   "skill_id": "C4",
+   "name": "C4 · Flow",
+   "track": "Conversation",
+   "seq": 4,
+   "status": "not_started",
+   "start_date": "2027-02-25",
+   "end_date": "2027-03-24",
+   "tasks_done": 0,
+   "tasks_total": 28
+  }
+ ],
+ "metrics": [
+  {
+   "skill_id": "L1",
+   "metric": "Fillers per minute",
+   "metric_id": "",
+   "unit": "/min",
+   "method": "S",
+   "day0": 6.8,
+   "current": 2.4,
+   "personal_best": 2.4,
+   "target": 2.0,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Speaking pace",
+   "metric_id": "",
+   "unit": "wpm",
+   "method": "S",
+   "day0": 182,
+   "current": 156,
+   "personal_best": 156,
+   "target": 150,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Pauses at clause breaks",
+   "metric_id": "",
+   "unit": "%",
+   "method": "S",
+   "day0": 48,
+   "current": 76,
+   "personal_best": 76,
+   "target": 75,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Seconds between pauses",
+   "metric_id": "",
+   "unit": "s",
+   "method": "S",
+   "day0": 2.1,
+   "current": 3.2,
+   "personal_best": 3.2,
+   "target": 3.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Longest steady \"ah\"",
+   "metric_id": "",
+   "unit": "s",
+   "method": "S",
+   "day0": 12,
+   "current": 21,
+   "personal_best": 21,
+   "target": 20,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Volume drop at sentence ends",
+   "metric_id": "",
+   "unit": "dB",
+   "method": "S+",
+   "day0": 9.5,
+   "current": 5.1,
+   "personal_best": 5.1,
+   "target": 4,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Voice clarity",
+   "metric_id": "",
+   "unit": "dB",
+   "method": "S",
+   "day0": 14.2,
+   "current": 16.9,
+   "personal_best": 16.9,
+   "target": 18,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Rainbow Passage error rate",
+   "metric_id": "",
+   "unit": "%",
+   "method": "S",
+   "day0": 7.9,
+   "current": 3.4,
+   "personal_best": 3.4,
+   "target": 3.0,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Unclear words per minute",
+   "metric_id": "",
+   "unit": "/min",
+   "method": "S",
+   "day0": 3.1,
+   "current": 1.4,
+   "personal_best": 1.4,
+   "target": 1.0,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Trouble-sound accuracy",
+   "metric_id": "",
+   "unit": "%",
+   "method": "R",
+   "day0": 64,
+   "current": 88,
+   "personal_best": 88,
+   "target": 90,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Word-stress accuracy",
+   "metric_id": "",
+   "unit": "%",
+   "method": "R",
+   "day0": 71,
+   "current": 92,
+   "personal_best": 92,
+   "target": 90,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Ease of understanding",
+   "metric_id": "",
+   "unit": "/9",
+   "method": "E",
+   "day0": 6,
+   "current": 7.5,
+   "personal_best": 7.5,
+   "target": 8,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Pitch range",
+   "metric_id": "",
+   "unit": "st",
+   "method": "S",
+   "day0": 5.1,
+   "current": 6.2,
+   "personal_best": 6.2,
+   "target": 8.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Falling statement endings",
+   "metric_id": "",
+   "unit": "%",
+   "method": "S+",
+   "day0": 52,
+   "current": 60,
+   "personal_best": 60,
+   "target": 80,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Words per thought group",
+   "metric_id": "",
+   "unit": "words",
+   "method": "T",
+   "day0": 9.8,
+   "current": 8.4,
+   "personal_best": 8.4,
+   "target": 6,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Emphasis accuracy",
+   "metric_id": "",
+   "unit": "/10",
+   "method": "D",
+   "day0": 5,
+   "current": 6,
+   "personal_best": 6,
+   "target": 9,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Sounds confident and engaging",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "E",
+   "day0": 3.0,
+   "current": 3.0,
+   "personal_best": 3.0,
+   "target": 4.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L4",
+   "metric": "Time to main point",
+   "metric_id": "",
+   "unit": "s",
+   "method": "T",
+   "day0": 24,
+   "current": null,
+   "personal_best": null,
+   "target": 10,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L4",
+   "metric": "Structure rubric",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "R",
+   "day0": 2.5,
+   "current": null,
+   "personal_best": null,
+   "target": 4.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L4",
+   "metric": "Signposts per answer",
+   "metric_id": "",
+   "unit": "",
+   "method": "T",
+   "day0": 0.8,
+   "current": null,
+   "personal_best": null,
+   "target": 3,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L4",
+   "metric": "Tangents per minute",
+   "metric_id": "",
+   "unit": "/min",
+   "method": "T",
+   "day0": 1.6,
+   "current": null,
+   "personal_best": null,
+   "target": 0.3,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L5",
+   "metric": "Minutes without notes",
+   "metric_id": "",
+   "unit": "min",
+   "method": "L",
+   "day0": 2,
+   "current": null,
+   "personal_best": null,
+   "target": 15,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L5",
+   "metric": "Planned points covered",
+   "metric_id": "",
+   "unit": "%",
+   "method": "T",
+   "day0": 60,
+   "current": null,
+   "personal_best": null,
+   "target": 100,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L5",
+   "metric": "Blanks per talk",
+   "metric_id": "",
+   "unit": "",
+   "method": "S",
+   "day0": 3,
+   "current": null,
+   "personal_best": null,
+   "target": 0,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L5",
+   "metric": "Fillers while recalling",
+   "metric_id": "",
+   "unit": "/min",
+   "method": "S",
+   "day0": 8.1,
+   "current": null,
+   "personal_best": null,
+   "target": 2.5,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L6",
+   "metric": "Mock interview score",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "R",
+   "day0": 2.8,
+   "current": null,
+   "personal_best": null,
+   "target": 4.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L6",
+   "metric": "Guest-type adaptation",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "R",
+   "day0": 2.5,
+   "current": null,
+   "personal_best": null,
+   "target": 4.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L6",
+   "metric": "Panel talk-time gap",
+   "metric_id": "",
+   "unit": "%",
+   "method": "S+",
+   "day0": 30,
+   "current": null,
+   "personal_best": null,
+   "target": 10,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L7",
+   "metric": "Storytelling rubric",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "R",
+   "day0": 2.5,
+   "current": null,
+   "personal_best": null,
+   "target": 4.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L7",
+   "metric": "Answer-first rate in Q&A",
+   "metric_id": "",
+   "unit": "%",
+   "method": "T",
+   "day0": 35,
+   "current": null,
+   "personal_best": null,
+   "target": 80,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L7",
+   "metric": "Presence on video",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "E",
+   "day0": 3.0,
+   "current": null,
+   "personal_best": null,
+   "target": 4.5,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L7",
+   "metric": "Nerves before a talk",
+   "metric_id": "",
+   "unit": "/10",
+   "method": "L",
+   "day0": 7,
+   "current": null,
+   "personal_best": null,
+   "target": 3,
+   "better": "lower"
+  },
+  {
+   "skill_id": "L8",
+   "metric": "Key messages landed",
+   "metric_id": "",
+   "unit": "/3",
+   "method": "T",
+   "day0": 1,
+   "current": null,
+   "personal_best": null,
+   "target": 3,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L8",
+   "metric": "Quotable lines per interview",
+   "metric_id": "",
+   "unit": "",
+   "method": "T",
+   "day0": 0.5,
+   "current": null,
+   "personal_best": null,
+   "target": 3,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L8",
+   "metric": "Bottom line in first 30 s",
+   "metric_id": "",
+   "unit": "%",
+   "method": "T",
+   "day0": 30,
+   "current": null,
+   "personal_best": null,
+   "target": 90,
+   "better": "higher"
+  },
+  {
+   "skill_id": "L8",
+   "metric": "Keynote audience rating",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "E",
+   "day0": 3.5,
+   "current": null,
+   "personal_best": null,
+   "target": 4.7,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Follow-ups using guest's words",
+   "metric_id": "",
+   "unit": "%",
+   "method": "T",
+   "day0": 22,
+   "current": 63,
+   "personal_best": 63,
+   "target": 60,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Paraphrase accuracy",
+   "metric_id": "",
+   "unit": "/10",
+   "method": "D",
+   "day0": 5,
+   "current": 9,
+   "personal_best": 9,
+   "target": 9,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Interruptions per episode",
+   "metric_id": "",
+   "unit": "",
+   "method": "S+",
+   "day0": 7,
+   "current": 3,
+   "personal_best": 3,
+   "target": 2,
+   "better": "lower"
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Host share of talk time",
+   "metric_id": "",
+   "unit": "%",
+   "method": "S+",
+   "day0": 38,
+   "current": 31,
+   "personal_best": 31,
+   "target": 25,
+   "better": "lower"
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotional cues caught",
+   "metric_id": "",
+   "unit": "/10",
+   "method": "D",
+   "day0": 4,
+   "current": 8,
+   "personal_best": 8,
+   "target": 9,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotion named correctly",
+   "metric_id": "",
+   "unit": "/10",
+   "method": "D",
+   "day0": 3,
+   "current": 8,
+   "personal_best": 8,
+   "target": 8,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotions named back per episode",
+   "metric_id": "",
+   "unit": "",
+   "method": "T",
+   "day0": 0.5,
+   "current": 3,
+   "personal_best": 3,
+   "target": 4,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Follow-ups that build on last answer",
+   "metric_id": "",
+   "unit": "%",
+   "method": "T",
+   "day0": 34,
+   "current": 47,
+   "personal_best": 47,
+   "target": 65,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Open-question share",
+   "metric_id": "",
+   "unit": "%",
+   "method": "T",
+   "day0": 55,
+   "current": 63,
+   "personal_best": 63,
+   "target": 80,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Double questions per episode",
+   "metric_id": "",
+   "unit": "",
+   "method": "T",
+   "day0": 9,
+   "current": 5,
+   "personal_best": 5,
+   "target": 2,
+   "better": "lower"
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Average question length",
+   "metric_id": "",
+   "unit": "words",
+   "method": "T",
+   "day0": 31,
+   "current": 26,
+   "personal_best": 26,
+   "target": 18,
+   "better": "lower"
+  },
+  {
+   "skill_id": "C4",
+   "metric": "Callbacks per episode",
+   "metric_id": "",
+   "unit": "",
+   "method": "T",
+   "day0": 0.5,
+   "current": null,
+   "personal_best": null,
+   "target": 3,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C4",
+   "metric": "Smooth topic changes",
+   "metric_id": "",
+   "unit": "%",
+   "method": "R",
+   "day0": 40,
+   "current": null,
+   "personal_best": null,
+   "target": 85,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C4",
+   "metric": "Guest share of talk time",
+   "metric_id": "",
+   "unit": "%",
+   "method": "S+",
+   "day0": 62,
+   "current": null,
+   "personal_best": null,
+   "target": 75,
+   "better": "higher"
+  },
+  {
+   "skill_id": "C4",
+   "metric": "Guest felt listened to",
+   "metric_id": "",
+   "unit": "/5",
+   "method": "E",
+   "day0": 3.8,
+   "current": null,
+   "personal_best": null,
+   "target": 5,
+   "better": "higher"
+  }
+ ],
+ "history": [
+  {
+   "skill_id": "L1",
+   "metric": "Fillers per minute",
+   "week": 0,
+   "value": 6.8
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Fillers per minute",
+   "week": 1,
+   "value": 5.2
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Fillers per minute",
+   "week": 2,
+   "value": 3.9
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Fillers per minute",
+   "week": 3,
+   "value": 3.5
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Fillers per minute",
+   "week": 4,
+   "value": 2.4
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Speaking pace",
+   "week": 0,
+   "value": 182
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Speaking pace",
+   "week": 1,
+   "value": 171.0
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Speaking pace",
+   "week": 2,
+   "value": 167.0
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Speaking pace",
+   "week": 3,
+   "value": 161.0
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Speaking pace",
+   "week": 4,
+   "value": 156
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Pauses at clause breaks",
+   "week": 0,
+   "value": 48
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Pauses at clause breaks",
+   "week": 1,
+   "value": 54.0
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Pauses at clause breaks",
+   "week": 2,
+   "value": 64.0
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Pauses at clause breaks",
+   "week": 3,
+   "value": 67.0
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Pauses at clause breaks",
+   "week": 4,
+   "value": 76
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Seconds between pauses",
+   "week": 0,
+   "value": 2.1
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Seconds between pauses",
+   "week": 1,
+   "value": 2.4
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Seconds between pauses",
+   "week": 2,
+   "value": 2.6
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Seconds between pauses",
+   "week": 3,
+   "value": 2.9
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Seconds between pauses",
+   "week": 4,
+   "value": 3.2
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Longest steady \"ah\"",
+   "week": 0,
+   "value": 12
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Longest steady \"ah\"",
+   "week": 1,
+   "value": 14.8
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Longest steady \"ah\"",
+   "week": 2,
+   "value": 17.9
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Longest steady \"ah\"",
+   "week": 3,
+   "value": 18.3
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Longest steady \"ah\"",
+   "week": 4,
+   "value": 21
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Volume drop at sentence ends",
+   "week": 0,
+   "value": 9.5
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Volume drop at sentence ends",
+   "week": 1,
+   "value": 7.8
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Volume drop at sentence ends",
+   "week": 2,
+   "value": 7.1
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Volume drop at sentence ends",
+   "week": 3,
+   "value": 6.5
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Volume drop at sentence ends",
+   "week": 4,
+   "value": 5.1
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Voice clarity",
+   "week": 0,
+   "value": 14.2
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Voice clarity",
+   "week": 1,
+   "value": 15.1
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Voice clarity",
+   "week": 2,
+   "value": 15.7
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Voice clarity",
+   "week": 3,
+   "value": 16.7
+  },
+  {
+   "skill_id": "L1",
+   "metric": "Voice clarity",
+   "week": 4,
+   "value": 16.9
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Rainbow Passage error rate",
+   "week": 0,
+   "value": 7.9
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Rainbow Passage error rate",
+   "week": 1,
+   "value": 5.9
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Rainbow Passage error rate",
+   "week": 2,
+   "value": 5.7
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Rainbow Passage error rate",
+   "week": 3,
+   "value": 4.1
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Rainbow Passage error rate",
+   "week": 4,
+   "value": 3.4
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Unclear words per minute",
+   "week": 0,
+   "value": 3.1
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Unclear words per minute",
+   "week": 1,
+   "value": 2.4
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Unclear words per minute",
+   "week": 2,
+   "value": 2.0
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Unclear words per minute",
+   "week": 3,
+   "value": 1.7
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Unclear words per minute",
+   "week": 4,
+   "value": 1.4
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Trouble-sound accuracy",
+   "week": 0,
+   "value": 64
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Trouble-sound accuracy",
+   "week": 1,
+   "value": 74.0
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Trouble-sound accuracy",
+   "week": 2,
+   "value": 76.0
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Trouble-sound accuracy",
+   "week": 3,
+   "value": 84.0
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Trouble-sound accuracy",
+   "week": 4,
+   "value": 88
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Word-stress accuracy",
+   "week": 0,
+   "value": 71
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Word-stress accuracy",
+   "week": 1,
+   "value": 79.0
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Word-stress accuracy",
+   "week": 2,
+   "value": 82.0
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Word-stress accuracy",
+   "week": 3,
+   "value": 88.0
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Word-stress accuracy",
+   "week": 4,
+   "value": 92
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Ease of understanding",
+   "week": 0,
+   "value": 6
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Ease of understanding",
+   "week": 1,
+   "value": 6.3
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Ease of understanding",
+   "week": 2,
+   "value": 6.7
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Ease of understanding",
+   "week": 3,
+   "value": 7.1
+  },
+  {
+   "skill_id": "L2",
+   "metric": "Ease of understanding",
+   "week": 4,
+   "value": 7.5
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Pitch range",
+   "week": 0,
+   "value": 5.1
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Pitch range",
+   "week": 1,
+   "value": 5.8
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Pitch range",
+   "week": 2,
+   "value": 6.2
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Falling statement endings",
+   "week": 0,
+   "value": 52
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Falling statement endings",
+   "week": 1,
+   "value": 56.0
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Falling statement endings",
+   "week": 2,
+   "value": 60
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Words per thought group",
+   "week": 0,
+   "value": 9.8
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Words per thought group",
+   "week": 1,
+   "value": 8.9
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Words per thought group",
+   "week": 2,
+   "value": 8.4
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Emphasis accuracy",
+   "week": 0,
+   "value": 5
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Emphasis accuracy",
+   "week": 1,
+   "value": 5.6
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Emphasis accuracy",
+   "week": 2,
+   "value": 6
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Sounds confident and engaging",
+   "week": 0,
+   "value": 3.0
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Sounds confident and engaging",
+   "week": 1,
+   "value": 3.0
+  },
+  {
+   "skill_id": "L3",
+   "metric": "Sounds confident and engaging",
+   "week": 2,
+   "value": 3.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Follow-ups using guest's words",
+   "week": 0,
+   "value": 22
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Follow-ups using guest's words",
+   "week": 1,
+   "value": 34.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Follow-ups using guest's words",
+   "week": 2,
+   "value": 48.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Follow-ups using guest's words",
+   "week": 3,
+   "value": 57.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Follow-ups using guest's words",
+   "week": 4,
+   "value": 63
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Paraphrase accuracy",
+   "week": 0,
+   "value": 5
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Paraphrase accuracy",
+   "week": 1,
+   "value": 6.1
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Paraphrase accuracy",
+   "week": 2,
+   "value": 7.4
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Paraphrase accuracy",
+   "week": 3,
+   "value": 8.2
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Paraphrase accuracy",
+   "week": 4,
+   "value": 9
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Interruptions per episode",
+   "week": 0,
+   "value": 7
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Interruptions per episode",
+   "week": 1,
+   "value": 6.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Interruptions per episode",
+   "week": 2,
+   "value": 4.9
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Interruptions per episode",
+   "week": 3,
+   "value": 3.6
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Interruptions per episode",
+   "week": 4,
+   "value": 3
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Host share of talk time",
+   "week": 0,
+   "value": 38
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Host share of talk time",
+   "week": 1,
+   "value": 36.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Host share of talk time",
+   "week": 2,
+   "value": 33.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Host share of talk time",
+   "week": 3,
+   "value": 32.0
+  },
+  {
+   "skill_id": "C1",
+   "metric": "Host share of talk time",
+   "week": 4,
+   "value": 31
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotional cues caught",
+   "week": 0,
+   "value": 4
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotional cues caught",
+   "week": 1,
+   "value": 5.6
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotional cues caught",
+   "week": 2,
+   "value": 6.0
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotional cues caught",
+   "week": 3,
+   "value": 7.2
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotional cues caught",
+   "week": 4,
+   "value": 8
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotion named correctly",
+   "week": 0,
+   "value": 3
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotion named correctly",
+   "week": 1,
+   "value": 4.1
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotion named correctly",
+   "week": 2,
+   "value": 6.1
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotion named correctly",
+   "week": 3,
+   "value": 7.3
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotion named correctly",
+   "week": 4,
+   "value": 8
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotions named back per episode",
+   "week": 0,
+   "value": 0.5
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotions named back per episode",
+   "week": 1,
+   "value": 1.4
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotions named back per episode",
+   "week": 2,
+   "value": 2.2
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotions named back per episode",
+   "week": 3,
+   "value": 2.4
+  },
+  {
+   "skill_id": "C2",
+   "metric": "Emotions named back per episode",
+   "week": 4,
+   "value": 3
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Follow-ups that build on last answer",
+   "week": 0,
+   "value": 34
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Follow-ups that build on last answer",
+   "week": 1,
+   "value": 42.0
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Follow-ups that build on last answer",
+   "week": 2,
+   "value": 47
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Open-question share",
+   "week": 0,
+   "value": 55
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Open-question share",
+   "week": 1,
+   "value": 60.0
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Open-question share",
+   "week": 2,
+   "value": 63
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Double questions per episode",
+   "week": 0,
+   "value": 9
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Double questions per episode",
+   "week": 1,
+   "value": 6.8
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Double questions per episode",
+   "week": 2,
+   "value": 5
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Average question length",
+   "week": 0,
+   "value": 31
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Average question length",
+   "week": 1,
+   "value": 28.0
+  },
+  {
+   "skill_id": "C3",
+   "metric": "Average question length",
+   "week": 2,
+   "value": 26
+  }
+ ],
+ "daily": [
+  {
+   "day": 1,
+   "date": "2026-11-30",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 2,
+   "date": "2026-12-01",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 3,
+   "date": "2026-12-02",
+   "tasks_due": 4,
+   "tasks_done": 3,
+   "carried_over": "1",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 15
+  },
+  {
+   "day": 4,
+   "date": "2026-12-03",
+   "tasks_due": 5,
+   "tasks_done": 5,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 25
+  },
+  {
+   "day": 5,
+   "date": "2026-12-04",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 6,
+   "date": "2026-12-05",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 7,
+   "date": "2026-12-06",
+   "tasks_due": 4,
+   "tasks_done": 2,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 10
+  },
+  {
+   "day": 8,
+   "date": "2026-12-07",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 9,
+   "date": "2026-12-08",
+   "tasks_due": 4,
+   "tasks_done": 0,
+   "carried_over": "4",
+   "status": "missed",
+   "zero_catchup": 0,
+   "minutes": 0
+  },
+  {
+   "day": 10,
+   "date": "2026-12-09",
+   "tasks_due": 8,
+   "tasks_done": 6,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 30
+  },
+  {
+   "day": 11,
+   "date": "2026-12-10",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 12,
+   "date": "2026-12-11",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 13,
+   "date": "2026-12-12",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 14,
+   "date": "2026-12-13",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 15,
+   "date": "2026-12-14",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 16,
+   "date": "2026-12-15",
+   "tasks_due": 4,
+   "tasks_done": 2,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 10
+  },
+  {
+   "day": 17,
+   "date": "2026-12-16",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 18,
+   "date": "2026-12-17",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 19,
+   "date": "2026-12-18",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 20,
+   "date": "2026-12-19",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 21,
+   "date": "2026-12-20",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 22,
+   "date": "2026-12-21",
+   "tasks_due": 4,
+   "tasks_done": 3,
+   "carried_over": "1",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 15
+  },
+  {
+   "day": 23,
+   "date": "2026-12-22",
+   "tasks_due": 5,
+   "tasks_done": 5,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 25
+  },
+  {
+   "day": 24,
+   "date": "2026-12-23",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 25,
+   "date": "2026-12-24",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 26,
+   "date": "2026-12-25",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 27,
+   "date": "2026-12-26",
+   "tasks_due": 4,
+   "tasks_done": 3,
+   "carried_over": "1",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 15
+  },
+  {
+   "day": 28,
+   "date": "2026-12-27",
+   "tasks_due": 5,
+   "tasks_done": 5,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 25
+  },
+  {
+   "day": 29,
+   "date": "2026-12-28",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 30,
+   "date": "2026-12-29",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 31,
+   "date": "2026-12-30",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 32,
+   "date": "2026-12-31",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 33,
+   "date": "2027-01-01",
+   "tasks_due": 4,
+   "tasks_done": 2,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 10
+  },
+  {
+   "day": 34,
+   "date": "2027-01-02",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 35,
+   "date": "2027-01-03",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 36,
+   "date": "2027-01-04",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 37,
+   "date": "2027-01-05",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 38,
+   "date": "2027-01-06",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 39,
+   "date": "2027-01-07",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 40,
+   "date": "2027-01-08",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 41,
+   "date": "2027-01-09",
+   "tasks_due": 4,
+   "tasks_done": 0,
+   "carried_over": "4",
+   "status": "missed",
+   "zero_catchup": 0,
+   "minutes": 0
+  },
+  {
+   "day": 42,
+   "date": "2027-01-10",
+   "tasks_due": 8,
+   "tasks_done": 6,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 30
+  },
+  {
+   "day": 43,
+   "date": "2027-01-11",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 44,
+   "date": "2027-01-12",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 45,
+   "date": "2027-01-13",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 46,
+   "date": "2027-01-14",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 47,
+   "date": "2027-01-15",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 48,
+   "date": "2027-01-16",
+   "tasks_due": 4,
+   "tasks_done": 2,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 10
+  },
+  {
+   "day": 49,
+   "date": "2027-01-17",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 50,
+   "date": "2027-01-18",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 51,
+   "date": "2027-01-19",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 52,
+   "date": "2027-01-20",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 53,
+   "date": "2027-01-21",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 54,
+   "date": "2027-01-22",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 55,
+   "date": "2027-01-23",
+   "tasks_due": 4,
+   "tasks_done": 2,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 10
+  },
+  {
+   "day": 56,
+   "date": "2027-01-24",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 57,
+   "date": "2027-01-25",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 58,
+   "date": "2027-01-26",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 59,
+   "date": "2027-01-27",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 60,
+   "date": "2027-01-28",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 61,
+   "date": "2027-01-29",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 62,
+   "date": "2027-01-30",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 63,
+   "date": "2027-01-31",
+   "tasks_due": 4,
+   "tasks_done": 2,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 10
+  },
+  {
+   "day": 64,
+   "date": "2027-02-01",
+   "tasks_due": 6,
+   "tasks_done": 6,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 30
+  },
+  {
+   "day": 65,
+   "date": "2027-02-02",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 66,
+   "date": "2027-02-03",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 67,
+   "date": "2027-02-04",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 68,
+   "date": "2027-02-05",
+   "tasks_due": 4,
+   "tasks_done": 4,
+   "carried_over": "0",
+   "status": "clean",
+   "zero_catchup": 1,
+   "minutes": 20
+  },
+  {
+   "day": 69,
+   "date": "2027-02-06",
+   "tasks_due": 4,
+   "tasks_done": 2,
+   "carried_over": "2",
+   "status": "carried",
+   "zero_catchup": 0,
+   "minutes": 10
+  },
+  {
+   "day": 70,
+   "date": "2027-02-07",
+   "tasks_due": 6,
+   "tasks_done": 2,
+   "carried_over": "",
+   "status": "today",
+   "zero_catchup": 0,
+   "minutes": 10
+  }
+ ],
+ "badges": [
+  {
+   "badge_id": "clean-slate",
+   "skill_id": "ALL",
+   "name": "Clean Slate",
+   "description": "First zero catch-up day",
+   "rarity": "common",
+   "earned_on": "2026-11-30"
+  },
+  {
+   "badge_id": "early-bird",
+   "skill_id": "ALL",
+   "name": "Early Bird Gets the Word",
+   "description": "Morning slot done before 9 am on 10 days",
+   "rarity": "common",
+   "earned_on": "2026-12-11"
+  },
+  {
+   "badge_id": "songbird",
+   "skill_id": "ALL",
+   "name": "Seven-Day Songbird",
+   "description": "7-day streak",
+   "rarity": "rare",
+   "earned_on": "2026-12-06"
+  },
+  {
+   "badge_id": "perfect-week",
+   "skill_id": "ALL",
+   "name": "Perfect Week Parrot",
+   "description": "A full week with nothing carried over",
+   "rarity": "rare",
+   "earned_on": "2026-12-20"
+  },
+  {
+   "badge_id": "slot-machine",
+   "skill_id": "ALL",
+   "name": "Slot Machine",
+   "description": "All 3 slots done on 20 days",
+   "rarity": "rare",
+   "earned_on": "2026-12-24"
+  },
+  {
+   "badge_id": "zero-hero",
+   "skill_id": "ALL",
+   "name": "Zero Hero",
+   "description": "25 zero catch-up days",
+   "rarity": "rare",
+   "earned_on": "2027-01-05"
+  },
+  {
+   "badge_id": "chatterbox",
+   "skill_id": "ALL",
+   "name": "Thirty-Day Chatterbox",
+   "description": "30-day streak",
+   "rarity": "epic",
+   "earned_on": "2027-01-07"
+  },
+  {
+   "badge_id": "magpie",
+   "skill_id": "ALL",
+   "name": "Spotless Month Magpie",
+   "description": "4 perfect weeks in a row",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "hummingbird",
+   "skill_id": "ALL",
+   "name": "Hundred-Day Hummingbird",
+   "description": "100-day streak",
+   "rarity": "legendary",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "bounce-back",
+   "skill_id": "ALL",
+   "name": "Bounce-Back Bunny",
+   "description": "Cleared a missed day within 2 days",
+   "rarity": "rare",
+   "earned_on": "2026-12-10"
+  },
+  {
+   "badge_id": "brink",
+   "skill_id": "ALL",
+   "name": "Back From the Brink",
+   "description": "Cleared a backlog of 10+ tasks",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "fixer",
+   "skill_id": "ALL",
+   "name": "Finish Line Fixer",
+   "description": "Pulled the projected end date back to the original",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "llama",
+   "skill_id": "ALL",
+   "name": "Level-Up Llama",
+   "description": "Finish a level (earned again for each one)",
+   "rarity": "common",
+   "earned_on": "2026-12-28"
+  },
+  {
+   "badge_id": "pb-party",
+   "skill_id": "ALL",
+   "name": "Personal Best Party",
+   "description": "5 personal bests in one week",
+   "rarity": "rare",
+   "earned_on": "2027-01-19"
+  },
+  {
+   "badge_id": "past-self",
+   "skill_id": "ALL",
+   "name": "Beat Your Past Self",
+   "description": "Better than Day 0 on every metric at a checkpoint",
+   "rarity": "epic",
+   "earned_on": "2027-01-26"
+  },
+  {
+   "badge_id": "grand-slam",
+   "skill_id": "ALL",
+   "name": "Grand Slam Gab",
+   "description": "All levels complete",
+   "rarity": "legendary",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "baseline-brave",
+   "skill_id": "L0",
+   "name": "Baseline Brave",
+   "description": "All baseline recordings done",
+   "rarity": "common",
+   "earned_on": "2026-11-29"
+  },
+  {
+   "badge_id": "mirror",
+   "skill_id": "L0",
+   "name": "Mirror, Mirror",
+   "description": "Self-assessment compared with measured baseline",
+   "rarity": "common",
+   "earned_on": "2026-11-29"
+  },
+  {
+   "badge_id": "belly",
+   "skill_id": "L1",
+   "name": "Belly Breather",
+   "description": "Hold a steady \"ah\" for 20 seconds",
+   "rarity": "common",
+   "earned_on": "2026-12-15"
+  },
+  {
+   "badge_id": "back-row",
+   "skill_id": "L1",
+   "name": "Back-Row Hero",
+   "description": "Volume stays steady to the end of sentences",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "goldilocks",
+   "skill_id": "L1",
+   "name": "Goldilocks Pace",
+   "description": "3 probes in a row in your target pace range",
+   "rarity": "rare",
+   "earned_on": "2026-12-27"
+  },
+  {
+   "badge_id": "pause-applause",
+   "skill_id": "L1",
+   "name": "Pause for Applause",
+   "description": "70%+ of pauses at clause breaks",
+   "rarity": "epic",
+   "earned_on": "2026-12-20"
+  },
+  {
+   "badge_id": "um-believable",
+   "skill_id": "L1",
+   "name": "Um-believable",
+   "description": "Under 2 fillers per minute in a probe",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "linky",
+   "skill_id": "L2",
+   "name": "Linky Lips",
+   "description": "Connected-speech drill passed",
+   "rarity": "common",
+   "earned_on": "2027-01-03"
+  },
+  {
+   "badge_id": "sniper",
+   "skill_id": "L2",
+   "name": "Sound Sniper",
+   "description": "90%+ on your trouble-sound list",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "stress-free",
+   "skill_id": "L2",
+   "name": "Stress-Free Stresser",
+   "description": "90%+ word stress on technical vocabulary",
+   "rarity": "rare",
+   "earned_on": "2027-01-22"
+  },
+  {
+   "badge_id": "rainbow",
+   "skill_id": "L2",
+   "name": "Rainbow Reader",
+   "description": "Under 3% errors on the reading passage",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "crystal",
+   "skill_id": "L2",
+   "name": "Crystal Clarity",
+   "description": "Outside listener rates you 8+ of 9",
+   "rarity": "legendary",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "guru",
+   "skill_id": "L3",
+   "name": "Thought-Group Guru",
+   "description": "Grouping drill passed",
+   "rarity": "common",
+   "earned_on": "2027-02-03"
+  },
+  {
+   "badge_id": "monotone",
+   "skill_id": "L3",
+   "name": "No More Monotone",
+   "description": "Pitch variability at target",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "falcon",
+   "skill_id": "L3",
+   "name": "Full Stop Falcon",
+   "description": "80%+ of statements end with a falling pitch",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "ace",
+   "skill_id": "L3",
+   "name": "Emphasis Ace",
+   "description": "9 of 10 on the emphasis drill",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "melody",
+   "skill_id": "L3",
+   "name": "Melody Maker",
+   "description": "Pitch range +3 semitones vs Day 0",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "sloth",
+   "skill_id": "L4",
+   "name": "Rule of Three-Toed Sloth",
+   "description": "Rule of Three used in 10 drills",
+   "rarity": "common",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "squirrel",
+   "skill_id": "L4",
+   "name": "Signpost Squirrel",
+   "description": "3+ signposts in each of 5 answers",
+   "rarity": "common",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "bluf",
+   "skill_id": "L4",
+   "name": "Bottom Line Up Front",
+   "description": "Main point within 10 s in 5 answers in a row",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "prep",
+   "skill_id": "L4",
+   "name": "PREP Cook",
+   "description": "10 PREP answers rated 4+",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "tangent",
+   "skill_id": "L4",
+   "name": "Tangent Tamer",
+   "description": "3-minute unscripted answer with no tangents",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "echo",
+   "skill_id": "C1",
+   "name": "Echo Pro",
+   "description": "9 of 10 on paraphrase accuracy",
+   "rarity": "common",
+   "earned_on": "2026-12-26"
+  },
+  {
+   "badge_id": "elephant",
+   "skill_id": "C1",
+   "name": "Big Ears Elephant",
+   "description": "80% of follow-ups pick up the guest's words",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "mood-ring",
+   "skill_id": "C2",
+   "name": "Mood Ring",
+   "description": "Right emotion named 8 of 10 times",
+   "rarity": "rare",
+   "earned_on": "2027-01-24"
+  },
+  {
+   "badge_id": "detective",
+   "skill_id": "C2",
+   "name": "Feelings Detective",
+   "description": "9 of 10 cues caught",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "one-question",
+   "skill_id": "C3",
+   "name": "One Question Wonder",
+   "description": "A full episode with no double questions",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "ladder",
+   "skill_id": "C3",
+   "name": "Ladder Climber",
+   "description": "5 topics taken to \"so what\" in one episode",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "fox",
+   "skill_id": "C3",
+   "name": "Follow-Up Fox",
+   "description": "60%+ of questions build on the guest's last answer",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "cat",
+   "skill_id": "C4",
+   "name": "Callback Cat",
+   "description": "3+ callbacks in one episode",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "segue",
+   "skill_id": "C4",
+   "name": "Silky Segue",
+   "description": "Every topic change in an episode rated smooth",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "whisperer",
+   "skill_id": "C4",
+   "name": "Guest Whisperer",
+   "description": "A guest rates \"felt listened to\" 5 of 5",
+   "rarity": "legendary",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "palace",
+   "skill_id": "L5",
+   "name": "Memory Palace Architect",
+   "description": "First 5-room memory palace built",
+   "rarity": "common",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "blank",
+   "skill_id": "L5",
+   "name": "Blank? No Thanks",
+   "description": "Recovered from a blank in under 3 s",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "koala",
+   "skill_id": "L5",
+   "name": "Full Coverage Koala",
+   "description": "Every planned point delivered, in order",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "no-notes",
+   "skill_id": "L5",
+   "name": "Look Ma, No Notes",
+   "description": "10-minute talk with no notes",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "titan",
+   "skill_id": "L5",
+   "name": "Twenty-Minute Titan",
+   "description": "20-minute talk with no notes",
+   "rarity": "legendary",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "tortoise",
+   "skill_id": "L6",
+   "name": "Timekeeper Tortoise",
+   "description": "Mock interview finished within 30 s of its time",
+   "rarity": "common",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "wrangler",
+   "skill_id": "L6",
+   "name": "Panel Wrangler",
+   "description": "Panelists balanced within 10% talk time",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "shapeshifter",
+   "skill_id": "L6",
+   "name": "Shape-Shifter Host",
+   "description": "Top score with all 4 mock guest types",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "owl",
+   "skill_id": "L7",
+   "name": "Storyteller Owl",
+   "description": "Story rated 4+ on the rubric",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "butterflies",
+   "skill_id": "L7",
+   "name": "Butterflies in Formation",
+   "description": "Pre-talk nerves down 3+ points vs Day 0",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "judo",
+   "skill_id": "L7",
+   "name": "Q&A Judo",
+   "description": "5 hostile questions bridged back to your message",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "room-owner",
+   "skill_id": "L7",
+   "name": "Room Owner",
+   "description": "Presence rated 4.5+ by peers",
+   "rarity": "legendary",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "briefing",
+   "skill_id": "L8",
+   "name": "Briefing Boss",
+   "description": "Bottom line in first 30 s of 5 briefings",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "sommelier",
+   "skill_id": "L8",
+   "name": "Soundbite Sommelier",
+   "description": "3 quotable lines in one interview",
+   "rarity": "rare",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "otter",
+   "skill_id": "L8",
+   "name": "On-Message Otter",
+   "description": "All 3 key messages landed in an interview",
+   "rarity": "epic",
+   "earned_on": ""
+  },
+  {
+   "badge_id": "phoenix",
+   "skill_id": "L8",
+   "name": "Keynote Phoenix",
+   "description": "Signature keynote delivered",
+   "rarity": "legendary",
+   "earned_on": ""
+  }
+ ]
+}

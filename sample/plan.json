@@ -1,0 +1,88 @@
+{
+ "date": "2027-02-07",
+ "title": "Week 10 · Level 3 · Prosody",
+ "tasks": [
+  {
+   "task_id": "2027-02-07-1",
+   "date": "2027-02-07",
+   "slot": "Morning",
+   "time": "08:00",
+   "skill_id": "L3",
+   "title": "Warm-up: breath, hum, lip trills",
+   "kind": "check",
+   "minutes": 3,
+   "instructions": "Breathe in for 4, out on \"sss\" for 8, four times. Hum low to high three times. Finish with 30 seconds of lip trills."
+  },
+  {
+   "task_id": "2027-02-07-2",
+   "date": "2027-02-07",
+   "slot": "Midday",
+   "time": "12:30",
+   "skill_id": "C3",
+   "title": "Follow-up reps: ladder to \"so what\"",
+   "kind": "text",
+   "minutes": 6,
+   "instructions": "For each guest line, write the follow-up that takes the guest one level deeper (what, then why, then so what).",
+   "prompts": [
+    "We decided to open-source the evaluation suite, even though it was a competitive advantage.",
+    "The pilot with the bank went well, but the compliance review took longer than the build."
+   ],
+   "metrics": [
+    "C3.build_on"
+   ]
+  },
+  {
+   "task_id": "2027-02-07-3",
+   "date": "2027-02-07",
+   "slot": "Afternoon",
+   "time": "17:00",
+   "skill_id": "L3",
+   "title": "Falling-intonation drill",
+   "kind": "record",
+   "minutes": 5,
+   "instructions": "Read each claim and let your pitch fall at the end, as a statement, not a question.",
+   "prompts": [
+    "1. Multi-turn attacks succeed where single prompts fail.",
+    "2. Evaluation must follow the whole conversation.",
+    "3. The risk compounds with every turn."
+   ],
+   "max_seconds": 120,
+   "metrics": [
+    "L3.falling_endings",
+    "L3.pitch_range"
+   ]
+  },
+  {
+   "task_id": "2027-02-07-4",
+   "date": "2027-02-07",
+   "slot": "Afternoon",
+   "time": "17:00",
+   "skill_id": "L3",
+   "title": "Weekly probe: 2-minute unscripted answer",
+   "kind": "record",
+   "minutes": 3,
+   "instructions": "About two minutes, no notes: what would you tell a bank board about conversational AI risk?",
+   "max_seconds": 150,
+   "metrics": []
+  }
+ ],
+ "carried": [
+  {
+   "task_id": "2027-02-06-3",
+   "date": "2027-02-06",
+   "slot": "Afternoon",
+   "time": "17:00",
+   "skill_id": "L3",
+   "title": "Contrastive-stress drill",
+   "kind": "record",
+   "minutes": 5,
+   "instructions": "Read each sentence twice, stressing a different word each time: \"I said she should present the results.\" Then: \"I said SHE should present the results.\"",
+   "max_seconds": 120,
+   "metrics": []
+  }
+ ],
+ "done": [
+  "2027-02-07-1",
+  "2027-02-06-3"
+ ]
+}
