@@ -22,5 +22,5 @@ Chrome on macOS) with nothing to install, and can be added to the home screen.
 
 `index.html`, `css/app.css`, `js/app.js` (routing, settings), `js/store.js` (GitHub sync and offline
 queue), `js/today.js` (Today tab and drill runners), `js/progress.js` (Progress, Skills, Badges),
-`js/audio.js` (recording and analysis), `js/art.js` (badge art), `js/vendor/d3.js`, `sample/` (made-up
+`js/audio.js` (recording and analysis), `js/art.js` (badge art; images in `img/badges/`), `js/vendor/d3.js`, `sample/` (made-up
 Week 10 data for the sample preview).

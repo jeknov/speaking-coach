@@ -1,4 +1,4 @@
-// Original critter badge illustrations (no external images).
+// Badge art: illustrated images in img/badges/<badge_id>.webp, with the original SVG critters as fallback.
 const NS = 'http://www.w3.org/2000/svg';
 export const RARITY = { common: '#3BA99C', rare: '#4A7BE0', epic: '#9B5DE5', legendary: '#E0A526' };
 const ACC = {
@@ -44,4 +44,12 @@ export function critter(id, rarity, size) {
   if (a === 'glass') { sv('circle', { cx: 74, cy: 72, r: 10, fill: 'rgba(255,255,255,.6)', stroke: '#6B4F3A', 'stroke-width': 3 }, s); sv('line', { x1: 81, y1: 79, x2: 90, y2: 88, stroke: '#6B4F3A', 'stroke-width': 4, 'stroke-linecap': 'round' }, s); }
   if (a === 'paper') { sv('rect', { x: 66, y: 64, width: 20, height: 24, rx: 2, fill: '#fff', stroke: '#888', 'stroke-width': 1.5 }, s); sv('path', { d: 'M70 70 L82 84 M82 70 L70 84', stroke: '#E85D75', 'stroke-width': 2.5 }, s); }
   return s;
+}
+
+// Illustrated badge image; falls back to the SVG critter if the file is missing.
+export function badgeArt(id, rarity, size) {
+  const img = document.createElement('img');
+  Object.assign(img, { src: `img/badges/${id}.webp`, width: size, height: size, alt: '', loading: 'lazy', decoding: 'async', className: 'badge-art' });
+  img.addEventListener('error', () => img.replaceWith(critter(id, rarity, size)), { once: true });
+  return img;
 }

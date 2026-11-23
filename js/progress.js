@@ -1,7 +1,7 @@
 // Progress, Skills and Badges views. Everything is drawn from state.json (rebuilt nightly
 // from the full raw log) plus today's live events.
 import * as d3 from './vendor/d3.js';
-import { critter, RARITY } from './art.js';
+import { critter, badgeArt, RARITY } from './art.js';
 
 export const h = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
@@ -239,7 +239,7 @@ function renderSkill(el, state, dv, id, onOpen) {
 export function badgeGrid(list) {
   if (!list.length) return h('div', { class: 'empty' }, 'No badges here.');
   const sorted = [...list].sort((a, b) => (b.earned_on ? 1 : 0) - (a.earned_on ? 1 : 0));
-  return h('div', { class: 'badges' }, ...sorted.map((b) => h('div', { class: 'badge' + (b.earned_on ? '' : ' locked') }, critter(b.badge_id, b.rarity, 66),
+  return h('div', { class: 'badges' }, ...sorted.map((b) => h('div', { class: 'badge' + (b.earned_on ? '' : ' locked') }, badgeArt(b.badge_id, b.rarity, 84),
     h('div', { class: 'bn' }, (b.earned_on ? '' : '🔒 ') + b.name), h('div', { class: 'bd' }, b.description),
     h('div', { class: 'br', style: `color:${RARITY[b.rarity] || 'inherit'}` }, b.rarity + (b.earned_on ? ' · ' + fmtShort(b.earned_on) : '')))));
 }
