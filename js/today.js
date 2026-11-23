@@ -40,6 +40,7 @@ export function renderToday(el, c, dv) {
       h('div', { class: 'big', style: 'font-size:1.5rem' }, `${n} of ${all.length} done`),
       h('div', { class: 'small' }, c.carried.length ? `${c.carried.length} carried over from earlier days. They come first.` : 'Nothing carried over. Clean slate.'),
       h('div', { class: 'small' }, `🔥 ${c.state.program.streak}-day streak · ⭐ ${dv.summary.zero_catchup_days} zero catch-up days`))),
+    c.plan && c.plan.message ? h('div', { class: 'card', style: 'font-size:.95rem' }, '💬 ', c.plan.message) : null,
     list);
   const right = h('div', { class: 'view', style: 'gap:14px' }, heroCards(c.state, dv));
   el.replaceChildren(h('div', { class: 'today-wide' }, left, h('div', { class: 'wide-only' }, right)));
