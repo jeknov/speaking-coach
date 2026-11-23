@@ -49,7 +49,7 @@ export function critter(id, rarity, size) {
 // Illustrated badge image; falls back to the SVG critter if the file is missing.
 export function badgeArt(id, rarity, size) {
   const img = document.createElement('img');
-  Object.assign(img, { src: `img/badges/${id}.webp`, width: size, height: size, alt: '', loading: 'lazy', decoding: 'async', className: 'badge-art' });
+  Object.assign(img, { src: `img/badges/${id}.webp?v=20261123`, width: size, height: size, alt: '', loading: 'lazy', decoding: 'async', className: 'badge-art' });
   img.addEventListener('error', () => img.replaceWith(critter(id, rarity, size)), { once: true });
   return img;
 }
