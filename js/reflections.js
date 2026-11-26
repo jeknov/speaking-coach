@@ -1,13 +1,13 @@
 // Reflections tab: weekly reflections written by the nightly coach, a comparison with
 // reference speakers, and a way to add reference clips (analysed in the browser).
-import { h } from './progress.js?v=20261126b';
-import { getJSON, logEvent } from './store.js?v=20261126b';
-import { recorderBlock, showResults, closeRunner } from './today.js?v=20261126b';
-import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126b';
+import { h } from './progress.js?v=20261126c';
+import { getJSON, logEvent } from './store.js?v=20261126c';
+import { recorderBlock, showResults, closeRunner } from './today.js?v=20261126c';
+import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126c';
 
 const REF_METRICS = ['L1.fillers', 'L1.pace', 'L1.pause_breaks', 'L1.run_length', 'L1.volume_drop', 'L1.voice_clarity', 'L3.pitch_range', 'L3.falling_endings', 'L3.words_per_group'];
 const cache = {};
-const SHORT = { podcast_host: 'Podcast host', ted_speaker: 'TED speaker', academic_elite: 'Academic', leadership: 'Leadership' };
+const SHORT = { podcast_host: 'Podcast host', ted_speaker: 'TED speaker', academic_elite: 'Academic', interviewee: 'Interviewee' };
 const fmtDay = (d) => (d ? new Date(d + 'T12:00:00Z').toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '');
 
 async function load(path, sample) {
@@ -65,7 +65,7 @@ function reflection(r, data, refs) {
 // One row per metric: you vs each reference persona, on a shared 0–100 "share of the way" scale
 function personaChart(rows, refs) {
   if (!rows.length) return null;
-  const colors = { you: 'var(--accent)', podcast_host: '#d97706', ted_speaker: '#db2777', academic_elite: '#059669', leadership: '#7c3aed' };
+  const colors = { you: 'var(--accent)', podcast_host: '#d97706', ted_speaker: '#db2777', academic_elite: '#059669', interviewee: '#7c3aed' };
   const names = Object.fromEntries(refs.map((p) => [p.persona_id, p.name]));
   const legend = h('div', { class: 'legend' }, h('span', {}, h('i', { style: `background:${colors.you};border-radius:50%` }), 'You'),
     ...[...new Set(rows.flatMap((r) => Object.keys(r.personas || {})))].map((p) => h('span', {}, h('i', { style: `background:${colors[p] || 'var(--ref)'};border-radius:50%` }), names[p] || p)));

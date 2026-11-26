@@ -1,7 +1,7 @@
 // Progress, Skills and Badges views. Everything is drawn from state.json (rebuilt nightly
 // from the full raw log) plus today's live events.
-import * as d3 from './vendor/d3.js?v=20261126b';
-import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261126b';
+import * as d3 from './vendor/d3.js?v=20261126c';
+import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261126c';
 
 export const h = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
@@ -202,7 +202,7 @@ function renderSkill(el, state, dv, id, onOpen) {
       v = h('div', { class: 'val' }, h('div', {}, isNum(r.day0) ? r.day0 + u : '—'), h('div', { class: 'small' }, isNum(r.day0) ? 'Day 0' : 'not measured yet'));
     }
     tr.append(h('div', { class: 'flag' }, '🏁'));
-    const refs = (state.references || []).filter((p) => p.metrics && isNum(p.metrics[r.metric_id])).map((p) => `${({ podcast_host: 'Podcast host', ted_speaker: 'TED speaker', academic_elite: 'Academic', leadership: 'Leadership' })[p.persona_id] || p.name} ${p.metrics[r.metric_id]}${u}`);
+    const refs = (state.references || []).filter((p) => p.metrics && isNum(p.metrics[r.metric_id])).map((p) => `${({ podcast_host: 'Podcast host', ted_speaker: 'TED speaker', academic_elite: 'Academic', interviewee: 'Interviewee' })[p.persona_id] || p.name} ${p.metrics[r.metric_id]}${u}`);
     race.append(h('div', { class: 'race-row' }, h('div', {}, h('div', {}, r.metric, h('span', { class: 'tag' }, r.method)), h('div', { class: 'small' }, `Day 0 ${isNum(r.day0) ? r.day0 + u : '—'} → target ${r.target}${u}`),
       refs.length ? h('div', { class: 'small', style: 'color:var(--accent)' }, '◆ ', refs.join(' · ')) : null), tr, v));
   }

@@ -2937,10 +2937,15 @@
    }
   },
   {
-   "persona_id": "leadership",
-   "name": "Leadership briefing",
-   "context": "Meetings and briefings with senior leaders",
-   "exemplars": [],
+   "persona_id": "interviewee",
+   "name": "Experienced interviewee",
+   "context": "Answering questions as the guest in interviews and podcasts",
+   "exemplars": [
+    {
+     "speaker": "Sara Hooker",
+     "url": "https://youtu.be/dBZp47999Ko?t=402"
+    }
+   ],
    "metrics": {}
   }
  ]
