@@ -1,10 +1,11 @@
-import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261123b';
-import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261123b';
-import { renderToday, doneMap } from './today.js?v=20261123b';
+import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126';
+import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126';
+import { renderToday, doneMap } from './today.js?v=20261126';
+import { renderReflections } from './reflections.js?v=20261126';
 
 const $ = (s) => document.querySelector(s);
-const VIEWS = ['today', 'progress', 'skills', 'badges', 'settings'];
-const TITLES = { today: 'Today', progress: 'Progress', skills: 'Skills', badges: 'Badges', settings: 'Settings' };
+const VIEWS = ['today', 'progress', 'skills', 'badges', 'reflections', 'settings'];
+const TITLES = { today: 'Today', progress: 'Progress', skills: 'Skills', badges: 'Badges', reflections: 'Reflections', settings: 'Settings' };
 let data = null; // { state, plan, carried, events, sample }
 
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2600); }
@@ -23,8 +24,9 @@ async function load() {
   const today = localDate();
   if (settings.sample || !settings.token) {
     const [state, plan] = await Promise.all([fetch('sample/state.json').then((r) => r.json()), fetch('sample/plan.json').then((r) => r.json())]);
-    const events = plan.done.map((id) => ({ type: 'task_done', task_id: id, local_time: '08:2' + id.slice(-1) }));
-    data = { state, plan, carried: plan.carried || [], events, sample: true, connected: !!settings.token };
+    const events = plan.done.map((id) => ({ type: 'task_done', task_id: id, local_time: '08:2' + id.slice(-1), kind: 'check', minutes: 3 }));
+    const [notes, extras] = await Promise.all([fetch('sample/notes.json').then((r) => r.json()).catch(() => null), fetch('sample/extras.json').then((r) => r.json()).catch(() => ({}))]);
+    data = { state, plan, carried: plan.carried || [], events, sample: true, connected: !!settings.token, notes, extras, ahead: [] };
     return;
   }
   try {
@@ -35,7 +37,16 @@ async function load() {
     const dates = [...new Set(ids.map((id) => id.slice(0, 10)))];
     const plans = await Promise.all(dates.map((d) => getJSON(`plan/${d}.json`).catch(() => null)));
     for (const p of plans) if (p) for (const t of p.tasks) if (ids.includes(t.task_id)) carried.push(t);
-    data = { state, plan, carried, events, sample: false, connected: true };
+    const addDays = (d, n) => new Date(Date.parse(d + 'T12:00:00Z') + n * 864e5).toISOString().slice(0, 10);
+    const yesterday = addDays(today, -1);
+    const aheadDays = state && state.program.in_baseline ? [1, 2, 3, 4, 5, 6] : [];
+    const progSkills = state ? [...new Set([...state.skills.filter((k) => k.status === 'in_progress' || k.status === 'remedial').map((k) => k.skill_id), ...(state.focus || []).map((f) => f.skill_id)])].filter((k) => k !== 'L0') : [];
+    const [nToday, nYest, ahead, pools] = await Promise.all([
+      getJSON(`notes/${today}.json`).catch(() => null), getJSON(`notes/${yesterday}.json`).catch(() => null),
+      Promise.all(aheadDays.map((n) => getJSON(`plan/${addDays(today, n)}.json`).catch(() => null))),
+      Promise.all(progSkills.map((k) => getJSON(`extras/${k}.json`).catch(() => null)))]);
+    const extras = {}; progSkills.forEach((k, i) => { if (pools[i]) extras[k] = pools[i]; });
+    data = { state, plan, carried, events, sample: false, connected: true, notes: nToday || nYest, ahead: ahead.filter(Boolean), extras };
     try { localStorage.setItem('sc_cache', JSON.stringify({ ...data, events: [], at: Date.now(), date: today })); } catch {}
   } catch (e) {
     console.warn(e);
@@ -73,6 +84,7 @@ function render() {
   if (view === 'progress') renderProgress(el, data.state, dv, openSkill);
   if (view === 'skills') renderSkills(el, data.state, dv, arg, openSkill);
   if (view === 'badges') renderBadges(el, data.state);
+  if (view === 'reflections') renderReflections(el, data, arg);
 }
 
 function renderWelcome(el) {

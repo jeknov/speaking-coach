@@ -1,7 +1,7 @@
 // Progress, Skills and Badges views. Everything is drawn from state.json (rebuilt nightly
 // from the full raw log) plus today's live events.
-import * as d3 from './vendor/d3.js?v=20261123b';
-import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261123b';
+import * as d3 from './vendor/d3.js?v=20261126';
+import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261126';
 
 export const h = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
@@ -15,7 +15,9 @@ export const h = (tag, attrs = {}, ...kids) => {
 };
 const fmtDate = (s) => (s ? d3.utcFormat('%b %-d, %Y')(new Date(s + 'T00:00:00Z')) : '—');
 const fmtShort = (s) => (s ? d3.utcFormat('%b %-d')(new Date(s + 'T00:00:00Z')) : '—');
-const STATUS = { completed: '✅ Completed', in_progress: '▶ In progress', not_started: '🔒 Not started' };
+const STATUS = { completed: '✅ Completed', in_progress: '▶ In progress', not_started: '🔒 Not started', remedial: '🔁 Remedial week' };
+const MEDAL = { bronze: '🥉', silver: '🥈', gold: '🥇' };
+const MEDAL_TXT = { bronze: 'Bronze: all tasks done', silver: 'Silver: level score 70 or more', gold: 'Gold: every target met' };
 const unitStr = (u) => (u ? (u.startsWith('/') || u === '%' ? u : ' ' + u) : '');
 const isNum = (v) => v !== null && v !== undefined && v !== '' && Number.isFinite(+v);
 
@@ -79,7 +81,7 @@ export function heroCards(state, dv, { compact } = {}) {
       h('div', { class: 'huge' }, fmtDate(p.current_level_expected_end)),
       h('div', { class: 'small' }, s.days_to_level_end >= 0 ? `In ${s.days_to_level_end} days` : 'Finishing today'),
       h('details', { class: 'info' }, h('summary', {}, h('i', { class: 'i' }, 'i'), ' Whole program'),
-        h('div', { class: 'body' }, `The whole program is projected to finish on ${fmtDate(p.projected_end)}, against a plan of ${fmtDate(p.original_end)}. ${p.days_added} day(s) have been added by carried-over tasks, and ${p.backlog} task(s) are in the backlog now. Overall, ${s.pct_complete}% of all tasks are done.`))),
+        h('div', { class: 'body' }, `The whole program is projected to finish on ${fmtDate(p.projected_end)}, against a plan of ${fmtDate(p.original_end)}. ${p.days_added < 0 ? `You've gained ${-p.days_added} day(s) by working ahead` : p.days_added > 0 ? `${p.days_added} day(s) have been added by carried-over tasks or remedial weeks` : 'You are exactly on plan'}, and ${p.backlog} task(s) are in the backlog now. Overall, ${s.pct_complete}% of all tasks are done.`))),
     h('div', { style: 'min-width:150px;flex:1;max-width:320px' }, h('div', { class: 'small' }, `${s.level_tasks_done} of ${s.level_tasks_total} level tasks done`), bar(s.level_pct)));
   if (compact) return finish;
   const nextStreak = [7, 30, 100].find((n) => n > p.streak) || 100;
@@ -154,6 +156,10 @@ export function renderProgress(el, state, dv, onOpen) {
     h('p', { class: 'small', style: 'margin:0' }, p.in_baseline ? `Baseline week · ${s.metrics_measured} metrics measured so far.` :
       `Week ${p.week_number}, day ${p.day_number}. You're ahead of Day-0 you on ${s.metrics_beaten} of the ${s.metrics_measured} metrics trained so far.`),
     heroCards(state, dv), thenVsNow(state, dv, onOpen),
+    (state.focus || []).length ? h('section', { id: 'focus' }, h('h2', { class: 'h2' }, 'Still working on'),
+      h('p', { class: 'note' }, 'Metrics below target in levels you have finished. They come first in extra practice and are re-tested every two weeks.'),
+      h('div', { class: 'slots' }, ...state.focus.slice(0, 5).map((f) => h('button', { class: 'task', onclick: () => onOpen && onOpen(f.skill_id) },
+        h('div', { class: 'ck' }, '🎯'), h('div', { style: 'flex:1;min-width:0' }, h('div', { class: 't' }, f.metric), h('div', { class: 'small' }, `${f.skill_id} · now ${f.current} · target ${f.target}`), bar(f.share_of_target, 'var(--warn)')), h('span', { class: 'go' }, '›'))))) : null,
     h('section', { id: 'stats' }, h('h2', { class: 'h2' }, 'Your numbers'), h('div', { class: 'stats' },
       ...[['Personal bests set', s.personal_bests], ['Hours practised', s.practice_hours], ['Tasks done', p.tasks_done], ['Badges earned', `${s.badges_earned} / ${s.badges_total}`], ['Levels completed', s.skills_completed], ['Average progress to target', s.avg_progress_pct + '%']]
         .map(([l, v]) => h('div', { class: 'stat' }, h('div', { class: 'label' }, l), h('div', { class: 'big' }, v))))),
@@ -166,7 +172,7 @@ export function renderSkills(el, state, dv, openId, onOpen) {
   const cards = (track) => h('div', { class: 'skills' }, ...state.skills.filter((k) => k.track === track).sort((a, b) => a.seq - b.seq).map((k) => {
     const m = dv.skillsum[k.skill_id] || {};
     return h('button', { class: 'skill ' + k.status, onclick: () => onOpen(k.skill_id) },
-      h('span', { class: 'st ' + k.status }, STATUS[k.status]), h('div', { class: 'nm' }, k.name),
+      h('span', { class: 'st ' + k.status }, STATUS[k.status]), h('div', { class: 'nm' }, k.medal && MEDAL[k.medal] ? h('span', { class: 'medal', title: MEDAL_TXT[k.medal] }, MEDAL[k.medal]) : null, k.name),
       h('div', { class: 'small' }, k.status === 'completed' ? `Done ${fmtShort(k.end_date)}` : k.status === 'in_progress' ? `Finishes ${fmtShort(k.end_date)}` : `Starts ~${fmtShort(k.start_date)}`),
       bar(m.task_pct, k.status === 'not_started' ? 'var(--grid)' : 'var(--ok)'),
       h('div', { class: 'small' }, m.metrics_measured ? `${m.avg_progress}% to target · ` : m.metrics_total ? `${m.metrics_total} metrics · ` : '', `🏅 ${m.badges_earned}/${m.badges_total}`));
@@ -196,7 +202,9 @@ function renderSkill(el, state, dv, id, onOpen) {
       v = h('div', { class: 'val' }, h('div', {}, isNum(r.day0) ? r.day0 + u : '—'), h('div', { class: 'small' }, isNum(r.day0) ? 'Day 0' : 'not measured yet'));
     }
     tr.append(h('div', { class: 'flag' }, '🏁'));
-    race.append(h('div', { class: 'race-row' }, h('div', {}, h('div', {}, r.metric, h('span', { class: 'tag' }, r.method)), h('div', { class: 'small' }, `Day 0 ${isNum(r.day0) ? r.day0 + u : '—'} → target ${r.target}${u}`)), tr, v));
+    const refs = (state.references || []).filter((p) => p.metrics && isNum(p.metrics[r.metric_id])).map((p) => `${({ podcast_host: 'Podcast host', ted_speaker: 'TED speaker', academic_elite: 'Academic', leadership: 'Leadership' })[p.persona_id] || p.name} ${p.metrics[r.metric_id]}${u}`);
+    race.append(h('div', { class: 'race-row' }, h('div', {}, h('div', {}, r.metric, h('span', { class: 'tag' }, r.method)), h('div', { class: 'small' }, `Day 0 ${isNum(r.day0) ? r.day0 + u : '—'} → target ${r.target}${u}`),
+      refs.length ? h('div', { class: 'small', style: 'color:var(--accent)' }, '◆ ', refs.join(' · ')) : null), tr, v));
   }
   // weekly checkpoints
   const measured = rows.filter((r) => r.measured);
@@ -226,7 +234,9 @@ function renderSkill(el, state, dv, id, onOpen) {
     h('div', {}, h('span', { class: 'st ' + k.status }, STATUS[k.status]), h('h2', { style: 'font-family:var(--serif);font-weight:400;font-size:1.7rem;margin:8px 0 4px' }, k.name),
       h('div', { class: 'small' }, k.status === 'completed' ? `${fmtShort(k.start_date)} – ${fmtShort(k.end_date)} · completed` : k.status === 'in_progress' ? `Started ${fmtShort(k.start_date)} · expected to finish ${fmtShort(k.end_date)}` : `Expected to start ~${fmtShort(k.start_date)}`),
       h('p', { class: 'small', style: 'font-size:.95rem' }, m.metrics_measured ? `Ahead of Day 0 on ${m.metrics_beaten} of ${m.metrics_measured} metrics, on average ${m.avg_progress}% of the way to target.` : 'Not started yet. Your Day 0 scores are below; the race starts when this skill does.'),
-      h('div', { class: 'small' }, `${k.tasks_done} of ${k.tasks_total} tasks done`), h('div', { style: 'max-width:420px' }, bar(m.task_pct))),
+      h('div', { class: 'small' }, `${k.tasks_done} of ${k.tasks_total} tasks done`), h('div', { style: 'max-width:420px' }, bar(m.task_pct)),
+      k.medal && MEDAL[k.medal] ? h('div', { style: 'margin-top:10px' }, h('span', { class: 'medal' }, MEDAL[k.medal]), MEDAL_TXT[k.medal], k.level_score != null ? ` · level score ${k.level_score}` : '', k.medal !== 'gold' ? h('div', { class: 'small' }, 'Medals can still go up: every metric below target stays in your extra practice and is re-tested every two weeks.') : null) : null,
+      k.status === 'remedial' ? h('div', { class: 'small warn', style: 'margin-top:6px' }, `Remedial week until ${fmtShort(k.remedial_until)}: one focused week on the metrics that didn't move yet.`) : null),
     h('section', {}, h('h2', { class: 'h2' }, 'Metrics'), h('p', { class: 'note' }, 'Each track runs from your Day 0 score (left) to your target (🏁). The thin line is your personal best.'), race),
     h('section', {}, h('h2', { class: 'h2' }, 'Weekly checkpoints'), measured.length ? sel : null, chart),
     h('section', {}, h('h2', { class: 'h2' }, 'Badges for this skill'), badgeGrid(state.badges.filter((b) => b.skill_id === id))),

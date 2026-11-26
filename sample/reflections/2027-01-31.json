@@ -1,0 +1,82 @@
+{
+ "date": "2027-01-31",
+ "title": "Week 9: Prosody begins",
+ "summary": "Level 2 finished with a silver medal, and Prosody started well.",
+ "progress": [
+  {
+   "metric": "Pitch range (st)",
+   "day0": 5.1,
+   "last_week": 5.8,
+   "now": 6.2,
+   "target": 8.5
+  },
+  {
+   "metric": "Falling statement endings (%)",
+   "day0": 52,
+   "last_week": 55,
+   "now": 60,
+   "target": 80
+  },
+  {
+   "metric": "Fillers per minute",
+   "day0": 6.8,
+   "last_week": 2.6,
+   "now": 2.4,
+   "target": 2.0
+  },
+  {
+   "metric": "Speaking pace (wpm)",
+   "day0": 182,
+   "last_week": 158,
+   "now": 156,
+   "target": 150
+  }
+ ],
+ "strengths": [
+  "Pace is now in the calm 150s, close to a skilled TED speaker.",
+  "Fillers have dropped by two thirds since Day 0.",
+  "Follow-up questions build on the guest's answer almost half the time."
+ ],
+ "focus": [
+  "Statements still rise on long sentences.",
+  "Pitch range is narrower than every reference speaker.",
+  "Volume drop at sentence ends (5.1 dB) is still above target."
+ ],
+ "persona_comparison": [
+  {
+   "metric": "Speaking pace (wpm)",
+   "better": "lower",
+   "you": 156,
+   "personas": {
+    "podcast_host": 172,
+    "ted_speaker": 158,
+    "academic_elite": 165
+   }
+  },
+  {
+   "metric": "Fillers per minute",
+   "better": "lower",
+   "you": 2.4,
+   "personas": {
+    "podcast_host": 2.1,
+    "ted_speaker": 0.6,
+    "academic_elite": 1.2
+   }
+  },
+  {
+   "metric": "Pitch range (st)",
+   "better": "higher",
+   "you": 6.2,
+   "personas": {
+    "podcast_host": 9.4,
+    "ted_speaker": 10.2,
+    "academic_elite": 8.1
+   }
+  }
+ ],
+ "persona_note": "On pace you now sit between the TED and academic references. Pitch range is the clearest gap: about 2 semitones below the academic reference.",
+ "next_week": [
+  "Week 3 of Prosody: falling intonation for statements and authority.",
+  "Extra practice: staircase-down claims, 3 minutes on busy days."
+ ]
+}

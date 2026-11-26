@@ -12,7 +12,7 @@ main{flex:1;min-width:0;padding:16px 16px 96px;max-width:1180px;margin:0 auto;wi
 .pill.ok{border-color:var(--ok);color:var(--ok)}.pill.warn{border-color:var(--warn);color:var(--warn)}.pill.bad{border-color:var(--bad);color:var(--bad)}
 .iconbtn{all:unset;cursor:pointer;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;font-size:1.2rem}
 .iconbtn:hover{background:var(--chip)}
-.tabbar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);background:var(--panel);border-top:1px solid var(--line);padding:6px 0 calc(6px + env(safe-area-inset-bottom));z-index:20}
+.tabbar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:var(--panel);border-top:1px solid var(--line);padding:6px 0 calc(6px + env(safe-area-inset-bottom));z-index:20}
 .tab{all:unset;cursor:pointer;text-align:center;font-size:.75rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px}
 .tab .ic{font-size:1.35rem;line-height:1}
 .tab.on{color:var(--fg);font-weight:600}
@@ -133,3 +133,7 @@ textarea{min-height:90px;resize:vertical}
 ol.steps{padding-left:20px;margin:0;display:flex;flex-direction:column;gap:6px}
 .err{color:var(--bad);font-size:.85rem}
 .sample-banner{font-size:.8rem;padding:8px 12px;border-radius:10px;border:1px dashed var(--warn);color:var(--warn)}
+
+.task.locked{opacity:.55;cursor:default}
+.st.remedial{border:1px solid var(--warn);color:var(--warn)}
+.medal{font-size:1.1rem;margin-right:4px}

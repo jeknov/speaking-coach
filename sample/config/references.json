@@ -1,0 +1,15 @@
+{
+ "note": "Exemplar speakers per context. Their clips are analysed with the same in-app analysis as Jekaterina's recordings; each value is the median across that persona's clips.",
+ "personas": [
+  {"persona_id": "podcast_host", "name": "Experienced podcast host", "context": "Technical and conversational podcast interviews",
+   "exemplars": [
+    {"speaker": "Mel Robbins", "url": "https://youtu.be/Xc_mWstSM6U?t=70"},
+    {"speaker": "Dr. Tim Scarfe", "url": "https://www.youtube.com/watch?v=io7qhEjJoik&t=236s"}]},
+  {"persona_id": "ted_speaker", "name": "Skilled TED-style speaker", "context": "Prepared talks for a broad audience",
+   "exemplars": [{"speaker": "Alona Fyshe", "url": "https://youtu.be/OIcQOfN1qak?t=125"}]},
+  {"persona_id": "academic_elite", "name": "Elite academic conference speaker", "context": "Technical talks and keynotes at research conferences",
+   "exemplars": [{"speaker": "Marzyeh Ghassemi", "url": "https://youtu.be/V2l8W4ju3vI?t=1037"}]},
+  {"persona_id": "leadership", "name": "Leadership briefing", "context": "Meetings and briefings with senior leaders",
+   "exemplars": []}
+ ]
+}

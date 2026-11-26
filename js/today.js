@@ -1,7 +1,7 @@
 // Today tab: the day's plan (carried-over tasks first) and a full-screen runner per task kind.
-import { h, heroCards } from './progress.js?v=20261123b';
-import { logEvent, saveRecording, saveFile, localTime } from './store.js?v=20261123b';
-import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261123b';
+import { h, heroCards } from './progress.js?v=20261126';
+import { logEvent, saveRecording, saveFile, localTime, localDate } from './store.js?v=20261126';
+import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126';
 
 const ICON = { record: '🎙️', memory: '🧠', quiz: '🧩', text: '✍️', form: '📝', rating: '⭐', upload: '📤', check: '✅' };
 let ctx = null; // { state, plan, carried, events, sample, refresh, toast }
@@ -10,9 +10,26 @@ export function doneMap(events) {
   const m = {}; for (const e of events) if (e.type === 'task_done' && !m[e.task_id]) m[e.task_id] = e; return m;
 }
 
+export function doneDates(c) {
+  const m = { ...((c.state && c.state.program && c.state.program.done_dates) || {}) };
+  for (const e of c.events) if (e.type === 'task_done' && !m[e.task_id]) m[e.task_id] = e.date || localDate();
+  return m;
+}
+const daysBetween = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
+export function lockedUntil(t, dd) {
+  if (!t.spacing) return null;
+  const prev = dd[t.spacing.after_task];
+  const today = localDate();
+  if (!prev) return 'after you finish the first one';
+  const ok = new Date(Date.parse(prev) + t.spacing.days * 864e5).toISOString().slice(0, 10);
+  return ok > today ? ok : null;
+}
+
 export function renderToday(el, c, dv) {
   ctx = c;
-  const done = doneMap(c.events);
+  const dd = doneDates(c);
+  const evDone = doneMap(c.events);
+  const done = new Proxy({}, { get: (_, id) => evDone[id] || (dd[id] ? { local_time: dd[id] === localDate() ? '' : 'earlier', date: dd[id] } : undefined) });
   const all = [...c.carried.map((t) => ({ ...t, carried: true })), ...(c.plan ? c.plan.tasks : [])];
   const n = all.filter((t) => done[t.task_id]).length;
   const ring = ringSvg(n, all.length);
@@ -41,7 +58,10 @@ export function renderToday(el, c, dv) {
       h('div', { class: 'small' }, c.carried.length ? `${c.carried.length} carried over from earlier days. They come first.` : 'Nothing carried over. Clean slate.'),
       h('div', { class: 'small' }, `🔥 ${c.state.program.streak}-day streak · ⭐ ${dv.summary.zero_catchup_days} zero catch-up days`))),
     c.plan && c.plan.message ? h('div', { class: 'card', style: 'font-size:.95rem' }, '💬 ', c.plan.message) : null,
-    list);
+    list,
+    n === all.length ? workAhead(c, dd) : null,
+    coachNotes(c.notes),
+    extraPractice(c, dv));
   const right = h('div', { class: 'view', style: 'gap:14px' }, heroCards(c.state, dv));
   el.replaceChildren(h('div', { class: 'today-wide' }, left, h('div', { class: 'wide-only' }, right)));
   const mq = window.matchMedia('(min-width:900px)');
@@ -54,19 +74,93 @@ function ringSvg(done, total) {
   const d = h('div', {}); d.innerHTML = s; return d.firstChild;
 }
 
+// ---------------- work ahead, coach's notes, extra practice
+function taskButton(t, d, lock) {
+  return h('button', { class: 'task' + (d ? ' done' : '') + (lock ? ' locked' : ''), onclick: () => { if (!lock) openRunner(t); }, 'aria-disabled': lock ? 'true' : null },
+    h('div', { class: 'ck' }, d ? '✓' : lock ? '🔒' : ''),
+    h('div', { style: 'min-width:0' }, h('div', { class: 't' }, `${ICON[t.kind] || '•'} ${t.title}`),
+      h('div', { class: 'small' }, lock ? `Unlocks ${/^\d/.test(lock) ? 'on ' + lock : lock}: repeats are spaced out to test how stable your baseline is` : `${t.minutes} min · ${t.skill_id}${d ? ' · done' : ''}`)),
+    lock ? null : h('span', { class: 'go' }, '›'));
+}
+function workAhead(c, dd) {
+  const days = (c.ahead || []).map((p) => ({ p, todo: p.tasks.filter((t) => !dd[t.task_id]) })).filter((x) => x.todo.length).slice(0, 2);
+  if (!days.length) return c.ahead === undefined ? null : h('div', { class: 'card' }, '🎉 All done for today, and nothing planned further ahead yet.');
+  return h('section', { class: 'card', style: 'display:flex;flex-direction:column;gap:8px' },
+    h('div', { class: 'label' }, 'All done for today · work ahead'),
+    h('div', { class: 'small' }, 'Tasks you do early count for their own day, so that day is lighter later.' + (c.state.program.in_baseline ? ' Finish the whole baseline early and Level 1 starts the next day.' : '')),
+    ...days.map(({ p, todo }) => h('div', { style: 'display:flex;flex-direction:column;gap:6px' },
+      h('div', { class: 'slot-h' }, `${p.title || p.date} · ${fmtDay(p.date)}`),
+      ...todo.map((t) => taskButton(t, null, lockedUntil(t, dd))))));
+}
+const fmtDay = (d) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
+function coachNotes(n) {
+  if (!n) return null;
+  return h('section', { class: 'card', id: 'coach-notes', style: 'display:flex;flex-direction:column;gap:10px' },
+    h('div', { class: 'label' }, `Coach's notes · ${fmtDay(n.date)}`),
+    n.went_well ? h('div', {}, h('b', {}, '✅ What went well: '), n.went_well) : null,
+    ...(n.mistakes || []).map((m, i) => h('div', { style: 'display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--line);padding-top:8px' },
+      h('div', { style: 'font-weight:600' }, `${i + 1}. ${m.title}`),
+      m.evidence ? h('div', { class: 'small' }, '🔎 ', m.evidence) : null,
+      m.why ? h('div', { class: 'small' }, '💡 Why it matters: ', m.why) : null,
+      m.try ? h('div', {}, '👉 Try: ', m.try) : null)),
+    n.tomorrow ? h('div', { style: 'border-top:1px solid var(--line);padding-top:8px' }, h('b', {}, 'Pay attention to: '), n.tomorrow) : null);
+}
+export function voiceMinutesToday(c) {
+  const vk = new Set(['record', 'memory']);
+  return c.events.filter((e) => (e.type === 'task_done' || e.type === 'extra_done') && vk.has(e.kind)).reduce((a, e) => a + (+e.minutes || 3), 0);
+}
+function weakest(c, dv) {
+  const f = (c.state.focus || [])[0];
+  if (f) return { skill_id: f.skill_id, why: `${f.metric} is at ${f.share_of_target}% of target` };
+  const cur = dv.mprog.filter((m) => m.measured && c.state.skills.find((s) => s.skill_id === m.skill_id && s.status === 'in_progress')).sort((a, b) => a.progress_pct - b.progress_pct)[0];
+  return cur ? { skill_id: cur.skill_id, why: `${cur.metric} is ${cur.progress_pct}% of the way to target` } : null;
+}
+function extraPractice(c, dv) {
+  const pools = c.extras || {};
+  const ids = Object.keys(pools).filter((k) => (pools[k].tasks || []).length);
+  if (!ids.length) return c.state.program.in_baseline ? null : h('section', { class: 'card small' }, 'Extra practice drills appear here once this week\'s pool is ready.');
+  const w = weakest(c, dv); let sel = w && ids.includes(w.skill_id) ? w.skill_id : ids[0];
+  const vm = voiceMinutesToday(c), capped = vm >= 45;
+  const list = h('div', { style: 'display:flex;flex-direction:column;gap:6px' });
+  const draw = () => {
+    const dd = new Set(c.events.filter((e) => e.type === 'extra_done').map((e) => e.task_id));
+    list.replaceChildren(...pools[sel].tasks.map((t) => {
+      const voice = t.kind === 'record' || t.kind === 'memory';
+      const b = taskButton({ ...t, extra: true }, dd.has(t.task_id), voice && capped ? 'tomorrow (voice rest: 45 min of voice work today)' : null);
+      return b;
+    }));
+  };
+  const chips = h('div', { class: 'chips' }, ...ids.map((k) => h('button', { class: 'chip' + (k === sel ? ' on' : ''), onclick: (e) => { sel = k; chips.querySelectorAll('.chip').forEach((x) => x.classList.toggle('on', x === e.currentTarget)); draw(); } }, (c.state.skills.find((s) => s.skill_id === k) || {}).name || k)));
+  const pickWeak = () => {
+    const pool = pools[sel].tasks.filter((t) => !(capped && (t.kind === 'record' || t.kind === 'memory')));
+    const dd = new Set(c.events.filter((e) => e.type === 'extra_done').map((e) => e.task_id));
+    const t = pool.find((x) => !dd.has(x.task_id)) || pool[0]; if (t) openRunner({ ...t, extra: true });
+  };
+  draw();
+  return h('details', { class: 'card', id: 'extra-practice' },
+    h('summary', { style: 'cursor:pointer;font-weight:600' }, '➕ Extra practice', h('span', { class: 'small', style: 'font-weight:400' }, ' · optional, no XP, never counts toward your plan')),
+    h('div', { style: 'display:flex;flex-direction:column;gap:10px;margin-top:10px' },
+      w ? h('button', { class: 'btn primary', onclick: () => { if (ids.includes(w.skill_id)) sel = w.skill_id; pickWeak(); } }, `🎯 Train my weakest skill`) : null,
+      w ? h('div', { class: 'small' }, `Weakest right now: ${w.why}.`) : null,
+      h('div', { class: 'small' }, `Voice work today: ${vm} of 45 min.`),
+      chips, list));
+}
+
 // ---------------- runner
 const R = () => document.getElementById('runner'), RI = () => document.getElementById('runner-inner');
-function closeRunner() { if (cleanup) { cleanup(); cleanup = null; } R().hidden = true; document.body.style.overflow = ''; ctx.refresh(); }
+export function closeRunner() { if (cleanup) { cleanup(); cleanup = null; } R().hidden = true; document.body.style.overflow = ''; if (ctx) ctx.refresh(); }
 let cleanup = null;
 
 export function openRunner(t) {
-  const done = doneMap(ctx.events)[t.task_id];
+  const done = t.extra ? null : (doneMap(ctx.events)[t.task_id] || (doneDates(ctx)[t.task_id] ? { local_time: 'earlier' } : null));
+  t = { ...t, _practice: !!t.extra || !!done };
   R().hidden = false; document.body.style.overflow = 'hidden';
   const body = h('div', { style: 'display:flex;flex-direction:column;gap:14px' });
   RI().replaceChildren(...[
     h('div', { class: 'top' }, h('button', { class: 'linkbtn', onclick: closeRunner }, '← Back'), h('span', { class: 'pill', style: 'margin-left:auto' }, `${t.skill_id} · ${t.minutes} min`)),
     h('h2', {}, `${ICON[t.kind] || ''} ${t.title}`),
-    done ? h('div', { class: 'pill ok', style: 'align-self:flex-start' }, `Done at ${done.local_time || ''}. You can practise it again; it won't count twice.`) : null,
+    done ? h('div', { class: 'pill ok', style: 'align-self:flex-start' }, `Done${done.local_time ? ' at ' + done.local_time : ''}. Practising it again is saved as extra practice and doesn't change your scores.`) : null,
+    t.extra ? h('div', { class: 'pill', style: 'align-self:flex-start' }, 'Extra practice · no XP · doesn\'t change your checkpoints') : null,
     h('p', { style: 'margin:0' }, t.instructions || ''), body].filter(Boolean));
   const fn = { record: runRecord, memory: runMemory, quiz: runQuiz, text: runText, form: runForm, rating: runRating, upload: runUpload, check: runCheck }[t.kind] || runCheck;
   fn(t, body, !!done);
@@ -74,17 +168,21 @@ export function openRunner(t) {
 
 async function finish(t, already, extra = {}) {
   if (ctx.sample) { ctx.toast('Sample mode: nothing was saved.'); closeRunner(); return; }
-  if (!already) {
-    const r = await logEvent({ type: 'task_done', task_id: t.task_id, skill_id: t.skill_id, kind: t.kind, planned_date: t.date, ...extra });
-    ctx.events.push({ type: 'task_done', task_id: t.task_id, local_time: localTime(), date: t.date });
+  if (t.extra) {
+    await logEvent({ type: 'extra_done', task_id: t.task_id, skill_id: t.skill_id, kind: t.kind, minutes: t.minutes, ...extra });
+    ctx.events.push({ type: 'extra_done', task_id: t.task_id, kind: t.kind, minutes: t.minutes, date: localDate() });
+    ctx.toast('Extra practice saved');
+  } else if (!already) {
+    const r = await logEvent({ type: 'task_done', task_id: t.task_id, skill_id: t.skill_id, kind: t.kind, minutes: t.minutes, planned_date: t.date, ...extra });
+    ctx.events.push({ type: 'task_done', task_id: t.task_id, kind: t.kind, minutes: t.minutes, local_time: localTime(), date: localDate() });
     ctx.toast(r === 'saved' ? '+10 XP · saved' : '+10 XP · saved on this device, will sync when online');
-  } else ctx.toast('Extra practice saved');
+  } else ctx.toast('Practice saved');
   closeRunner();
 }
 async function measure(t, metricId, value, extra = {}) {
   if (ctx.sample || value == null || !Number.isFinite(+value)) return;
   if (t.metrics && !t.metrics.includes(metricId)) return;
-  await logEvent({ type: 'measurement', metric_id: metricId, value: +value, task_id: t.task_id, method: extra.method || 'S', tool: ANALYSIS_VERSION, source: extra.source || '' });
+  await logEvent({ type: 'measurement', metric_id: metricId, value: +value, task_id: t.task_id, method: extra.method || 'S', tool: ANALYSIS_VERSION, source: extra.source || '', ...(t._practice ? { extra: true } : {}) });
 }
 
 function runCheck(t, body, already) {
@@ -95,7 +193,7 @@ function runCheck(t, body, already) {
 }
 const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
-function recorderBlock(t, onBlob) {
+export function recorderBlock(t, onBlob) {
   const max = t.max_seconds || 180;
   const tm = h('div', { class: 'timer' }, '0:00'), meter = h('div', { class: 'meter' }, h('span', {}));
   const btn = h('button', { class: 'btn rec' }, '● Start recording'); const msg = h('div', { class: 'small' }, `Up to ${fmt(max)}. Quiet room, phone about 20 cm from your mouth.`);
@@ -119,7 +217,7 @@ const LABELS = {
   pitch_range_st: ['Pitch range', 'st'], falling_endings_pct: ['Falling endings', '%'], volume_drop_db: ['Volume drop at ends', 'dB'], voice_clarity_db: ['Voice clarity', 'dB'],
   longest_voiced_s: ['Longest steady voicing', 's'], articulation_rate: ['Syllables per second', ''], reading_error_pct: ['Reading error rate', '%'], words_per_group: ['Words per thought group', ''], blanks: ['Blanks over 3 s', ''],
 };
-function showResults(obj) {
+export function showResults(obj) {
   return h('div', { class: 'results' }, ...Object.entries(LABELS).filter(([k]) => obj[k] != null).map(([k, [l, u]]) => h('div', { class: 'result' }, h('div', { class: 'small' }, l), h('div', { class: 'v' }, `${obj[k]}${u ? ' ' + u : ''}`))));
 }
 
@@ -155,7 +253,7 @@ function analysisFlow(t, body, already, blob, extraEvent = {}) {
       const cand = candidates(ac, tm);
       for (const mid of t.metrics || []) if (cand[mid] != null) await measure(t, mid, cand[mid], { source: path });
       const { pause_times, ...acSlim } = ac;
-      await logEvent({ type: 'recording', task_id: t.task_id, skill_id: t.skill_id, path, mime: blob.type, analysis: acSlim, pause_times, transcript: tr ? tr.text : null, words: tr ? tr.words : null, transcript_metrics: tm, reference: t.reference || null, tool: ANALYSIS_VERSION, ...extraEvent });
+      await logEvent({ type: 'recording', task_id: t.task_id, skill_id: t.skill_id, path, mime: blob.type, analysis: acSlim, pause_times, transcript: tr ? tr.text : null, words: tr ? tr.words : null, transcript_metrics: tm, reference: t.reference || null, tool: ANALYSIS_VERSION, ...extraEvent, ...(t._practice ? { extra: true } : {}) });
       status.textContent = 'Saved.';
       const fin = h('button', { class: 'btn primary', onclick: () => finish(t, already, { recording: path }) }, already ? 'Close' : 'Finish task');
       go.remove(); area.append(status, fin);
@@ -227,7 +325,7 @@ function runQuiz(t, body, already) {
       h('div', { class: 'small' }, 'Saved as your score for this drill.'));
     await measure(t, 'C2.cues_caught', Math.round((cues / items.length) * 10), { method: 'D' });
     await measure(t, 'C2.emotion_named', Math.round((emos / items.length) * 10), { method: 'D' });
-    if (!ctx.sample) await logEvent({ type: 'drill', task_id: t.task_id, kind: 'quiz', answers, cues, emotions: emos, n: items.length });
+    if (!ctx.sample) await logEvent({ type: 'drill', task_id: t.task_id, kind: 'quiz', answers, cues, emotions: emos, n: items.length, ...(t._practice ? { extra: true } : {}) });
     box.append(h('button', { class: 'btn primary', onclick: () => finish(t, already) }, already ? 'Close' : 'Finish task'));
   };
   show();
@@ -239,7 +337,7 @@ function runText(t, body, already) {
   const err = h('div', { class: 'err' });
   body.append(err, h('div', { class: 'small' }, 'I score these tonight and you get feedback in tomorrow\'s plan.'), h('button', { class: 'btn primary', onclick: async () => {
     if (areas.some((a) => !a.ta.value.trim())) { err.textContent = 'Answer every line first.'; return; }
-    if (!ctx.sample) await logEvent({ type: 'drill', task_id: t.task_id, kind: 'text', prompts: areas.map((a) => a.p), answers: areas.map((a) => a.ta.value.trim()), score_with: t.metrics || [] });
+    if (!ctx.sample) await logEvent({ type: 'drill', task_id: t.task_id, kind: 'text', prompts: areas.map((a) => a.p), answers: areas.map((a) => a.ta.value.trim()), score_with: t.metrics || [], ...(t._practice ? { extra: true } : {}) });
     finish(t, already);
   } }, already ? 'Save again' : 'Save and finish'));
 }
@@ -278,7 +376,7 @@ function runUpload(t, body, already) {
     if (ctx.sample) return finish(t, already);
     const paths = [];
     for (const f of files) { st.textContent = `Uploading ${f.name}…`; paths.push((await saveFile(f, t.task_id)).path); }
-    await logEvent({ type: 'upload', task_id: t.task_id, paths, names: files.map((f) => f.name), score_with: t.metrics || [] });
+    await logEvent({ type: 'upload', task_id: t.task_id, paths, names: files.map((f) => f.name), score_with: t.metrics || [], ...(t._practice ? { extra: true } : {}) });
     finish(t, already);
   } }, 'Upload and finish'));
 }

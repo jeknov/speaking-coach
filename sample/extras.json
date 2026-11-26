@@ -1,0 +1,70 @@
+{
+ "L3": {
+  "week_of": "2027-02-01",
+  "tasks": [
+   {
+    "task_id": "x-L3-1",
+    "date": "2027-02-07",
+    "slot": "Extra",
+    "time": "",
+    "skill_id": "L3",
+    "title": "Staircase-down claims",
+    "kind": "record",
+    "minutes": 4,
+    "instructions": "Read each claim and step your pitch down on the last word.",
+    "prompts": [
+     "Evaluation is a trajectory, not a snapshot.",
+     "Safety failures compound turn by turn."
+    ],
+    "max_seconds": 90,
+    "metrics": [
+     "L3.falling_endings"
+    ]
+   },
+   {
+    "task_id": "x-L3-2",
+    "date": "2027-02-07",
+    "slot": "Extra",
+    "time": "",
+    "skill_id": "L3",
+    "title": "Contrast stress: five pairs",
+    "kind": "record",
+    "minutes": 4,
+    "instructions": "Read each sentence twice, stressing a different word each time.",
+    "max_seconds": 120,
+    "metrics": []
+   },
+   {
+    "task_id": "x-L3-3",
+    "date": "2027-02-07",
+    "slot": "Extra",
+    "time": "",
+    "skill_id": "L3",
+    "title": "Pitch range glide",
+    "kind": "check",
+    "minutes": 3,
+    "instructions": "Glide on \"ah\" from your lowest comfortable note to your highest and back, 5 times."
+   }
+  ]
+ },
+ "L1": {
+  "week_of": "2027-02-01",
+  "tasks": [
+   {
+    "task_id": "x-L1-1",
+    "date": "2027-02-07",
+    "slot": "Extra",
+    "time": "",
+    "skill_id": "L1",
+    "title": "Volume to the last word",
+    "kind": "record",
+    "minutes": 3,
+    "instructions": "Read three sentences, keeping the energy all the way to the final word.",
+    "max_seconds": 90,
+    "metrics": [
+     "L1.volume_drop"
+    ]
+   }
+  ]
+ }
+}
