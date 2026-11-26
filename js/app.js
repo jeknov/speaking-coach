@@ -1,7 +1,7 @@
-import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126c';
-import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126c';
-import { renderToday, doneMap } from './today.js?v=20261126c';
-import { renderReflections } from './reflections.js?v=20261126c';
+import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126d';
+import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126d';
+import { renderToday, doneMap } from './today.js?v=20261126d';
+import { renderReflections } from './reflections.js?v=20261126d';
 
 const $ = (s) => document.querySelector(s);
 const VIEWS = ['today', 'progress', 'skills', 'badges', 'reflections', 'settings'];
@@ -46,6 +46,7 @@ async function load() {
       Promise.all(aheadDays.map((n) => getJSON(`plan/${addDays(today, n)}.json`).catch(() => null))),
       Promise.all(progSkills.map((k) => getJSON(`extras/${k}.json`).catch(() => null)))]);
     const extras = {}; progSkills.forEach((k, i) => { if (pools[i]) extras[k] = pools[i]; });
+    mergeLiveReferences(state, events);
     data = { state, plan, carried, events, sample: false, connected: true, notes: nToday || nYest, ahead: ahead.filter(Boolean), extras };
     try { localStorage.setItem('sc_cache', JSON.stringify({ ...data, events: [], at: Date.now(), date: today })); } catch {}
   } catch (e) {
@@ -126,6 +127,20 @@ function renderSettings(el) {
       h('label', { class: 'small', style: 'display:flex;gap:8px;align-items:center' },
         h('input', { type: 'checkbox', checked: settings.sample, onchange: (e) => { settings.sample = e.target.checked; reload(); } }), 'Show the made-up Week 10 sample instead of my data')),
     h('p', { class: 'small' }, `Speaking Coach 0.1 · device ${settings.device}`));
+}
+
+// Reference clips analysed today show at once; the nightly update makes them final.
+function mergeLiveReferences(state, events) {
+  if (!state || !state.references) return;
+  const ok = new Set(['L1.pace', 'L1.fillers']), by = {};
+  for (const e of events) {
+    if (e.type !== 'reference_measurement' || e.value == null || (e.captured && !ok.has(e.metric_id))) continue;
+    ((by[e.persona] ||= {})[e.metric_id] ||= []).push(+e.value);
+  }
+  for (const r of state.references) for (const [m, v] of Object.entries(by[r.persona_id] || {})) {
+    if (r.metrics && r.metrics[m] != null) continue;
+    const s = [...v].sort((a, b) => a - b); (r.metrics ||= {})[m] = Math.round(s[Math.floor(s.length / 2)] * 100) / 100;
+  }
 }
 
 async function reload() { try { await load(); } catch (e) { console.error(e); toast('Could not load: ' + e.message); } render(); }

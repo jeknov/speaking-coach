@@ -1,9 +1,9 @@
 // Reflections tab: weekly reflections written by the nightly coach, a comparison with
 // reference speakers, and a way to add reference clips (analysed in the browser).
-import { h } from './progress.js?v=20261126c';
-import { getJSON, logEvent } from './store.js?v=20261126c';
-import { recorderBlock, showResults, closeRunner } from './today.js?v=20261126c';
-import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126c';
+import { h } from './progress.js?v=20261126d';
+import { getJSON, logEvent } from './store.js?v=20261126d';
+import { recorderBlock, showResults, closeRunner } from './today.js?v=20261126d';
+import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126d';
 
 const REF_METRICS = ['L1.fillers', 'L1.pace', 'L1.pause_breaks', 'L1.run_length', 'L1.volume_drop', 'L1.voice_clarity', 'L3.pitch_range', 'L3.falling_endings', 'L3.words_per_group'];
 const cache = {};
@@ -135,7 +135,7 @@ function refAnalysis(p, x, blob, captured, data) {
       area.append(showResults({ ...ac, ...(tm || {}) }));
       if (data.sample) { status.textContent = 'Sample mode: nothing saved.'; return; }
       for (const m of keep) await logEvent({ type: 'reference_measurement', persona: p.persona_id, speaker: x.speaker, metric_id: m, value: +cand[m], captured, tool: ANALYSIS_VERSION });
-      status.textContent = `Saved ${keep.length} measure(s) for ${x.speaker}${captured ? ' (captured clips keep only pace and fillers)' : ''}. They appear in your comparisons after tonight\'s update.`;
+      status.textContent = `Saved ${keep.length} measure(s) for ${x.speaker}${captured ? ' (captured clips keep only pace and fillers)' : ''}. Refresh this tab to see them.`;
       go.remove(); area.append(h('button', { class: 'btn', onclick: () => closeRunner() }, 'Done'));
     } catch (e) { status.textContent = 'Something went wrong: ' + e.message; go.disabled = false; }
   });
