@@ -1,7 +1,7 @@
 // Today tab: the day's plan (carried-over tasks first) and a full-screen runner per task kind.
-import { h, heroCards } from './progress.js?v=20261126f';
-import { logEvent, saveRecording, saveFile, localTime, localDate } from './store.js?v=20261126f';
-import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126f';
+import { h, heroCards } from './progress.js?v=20261126g';
+import { logEvent, saveRecording, saveFile, localTime, localDate } from './store.js?v=20261126g';
+import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126g';
 
 const ICON = { record: '🎙️', memory: '🧠', quiz: '🧩', text: '✍️', form: '📝', rating: '⭐', upload: '📤', check: '✅' };
 let ctx = null; // { state, plan, carried, events, sample, refresh, toast }

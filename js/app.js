@@ -1,7 +1,7 @@
-import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126f';
-import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126f';
-import { renderToday, doneMap } from './today.js?v=20261126f';
-import { renderReflections } from './reflections.js?v=20261126f';
+import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126g';
+import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126g';
+import { renderToday, doneMap } from './today.js?v=20261126g';
+import { renderReflections } from './reflections.js?v=20261126g';
 
 const $ = (s) => document.querySelector(s);
 const VIEWS = ['today', 'progress', 'skills', 'badges', 'reflections', 'settings'];
@@ -46,7 +46,13 @@ async function load() {
       Promise.all(aheadDays.map((n) => getJSON(`plan/${addDays(today, n)}.json`).catch(() => null))),
       Promise.all(progSkills.map((k) => getJSON(`extras/${k}.json`).catch(() => null)))]);
     const extras = {}; progSkills.forEach((k, i) => { if (pools[i]) extras[k] = pools[i]; });
-    mergeLiveReferences(state, events);
+    // Reference clips added since the last rebuild (including earlier that same day) show at once.
+    let refEvents = events;
+    if (state && state.as_of && state.as_of < today) {
+      const back = []; for (let d = state.as_of; d < today && back.length < 7; d = addDays(d, 1)) back.push(d);
+      refEvents = [...(await Promise.all(back.map((d) => eventsFor(d).catch(() => [])))).flat(), ...events];
+    }
+    mergeLiveReferences(state, refEvents);
     data = { state, plan, carried, events, sample: false, connected: true, notes: nToday || nYest, ahead: ahead.filter(Boolean), extras };
     try { localStorage.setItem('sc_cache', JSON.stringify({ ...data, events: [], at: Date.now(), date: today })); } catch {}
   } catch (e) {
