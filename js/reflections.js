@@ -1,9 +1,9 @@
 // Reflections tab: weekly reflections written by the nightly coach, a comparison with
 // reference speakers, and a way to add reference clips (analysed in the browser).
-import { h } from './progress.js?v=20261126e';
-import { getJSON, logEvent } from './store.js?v=20261126e';
-import { recorderBlock, showResults, closeRunner } from './today.js?v=20261126e';
-import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126e';
+import { h } from './progress.js?v=20261126f';
+import { getJSON, logEvent, list as ghList } from './store.js?v=20261126f';
+import { recorderBlock, showResults, closeRunner, coachNotes } from './today.js?v=20261126f';
+import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126f';
 
 const REF_METRICS = ['L1.fillers', 'L1.pace', 'L1.pause_breaks', 'L1.run_length', 'L1.volume_drop', 'L1.voice_clarity', 'L3.pitch_range', 'L3.falling_endings', 'L3.words_per_group'];
 const cache = {};
@@ -41,6 +41,7 @@ export async function renderReflections(el, data, openFile) {
       h('div', { class: 'slots' }, ...index.slice(1).map((r) => h('button', { class: 'task', onclick: () => { location.hash = 'reflections/' + r.file; } },
         h('div', { class: 'ck' }, '📓'), h('div', {}, h('div', { class: 't' }, r.title || 'Weekly reflection'), h('div', { class: 'small' }, fmtDay(r.date))), h('span', { class: 'go' }, '›'))))));
   }
+  if (!openFile) out.push(await notesHistory(data));
   out.push(referenceSection(refs, data));
   el.replaceChildren(...out);
 }
@@ -202,4 +203,37 @@ function personaDetail(p, data) {
     h('details', { class: 'info' }, h('summary', {}, h('i', { class: 'i' }, 'i'), ' About these numbers'),
       h('div', { class: 'body' }, 'Clips are analysed with the same measures as your recordings. Clips captured by playing a video out loud keep only pace and fillers; uploaded files give every measure. Fillers read 0 for most speakers because the speech recogniser drops many "um"s.')),
     addSpeaker(p, data));
+}
+
+// Coach's notes history: every evening's notes, newest first, grouped by training week (Mon–Sun).
+async function notesHistory(data) {
+  let dates = [];
+  try {
+    if (data.sample) dates = (await fetch('sample/notes/index.json').then((x) => x.json())) || [];
+    else dates = (await ghList('notes')).map((f) => f.name).filter((n) => /^\d{4}-\d{2}-\d{2}\.json$/.test(n)).map((n) => n.slice(0, 10));
+  } catch { dates = []; }
+  dates.sort().reverse();
+  const sec = h('section', { id: 'notes-history' }, h('h2', { class: 'h2' }, "Coach's notes"),
+    h('p', { class: 'note' }, 'Every evening\'s notes, kept for good. Read a week\'s notes next to its reflection to see which mistakes keep coming back.'));
+  if (!dates.length) { sec.append(h('div', { class: 'empty' }, 'Your first notes arrive tonight after the nightly update.')); return sec; }
+  const monday = (d) => { const t = new Date(d + 'T12:00:00Z'); const wd = (t.getUTCDay() + 6) % 7; return new Date(t - wd * 864e5).toISOString().slice(0, 10); };
+  const weeks = {}; for (const d of dates) (weeks[monday(d)] ||= []).push(d);
+  const pg = data.state.program;
+  const day0 = pg.day1 || new Date(Date.parse(pg.today_date + 'T12:00:00Z') - (pg.day_number - 1) * 864e5).toISOString().slice(0, 10);
+  Object.keys(weeks).sort().reverse().forEach((wk, i) => {
+    const n = Math.floor((Date.parse(wk) - Date.parse(day0)) / (7 * 864e5)) + 1;
+    const label = n >= 1 ? `Week ${n}` : 'Baseline week';
+    const body = h('div', { style: 'display:flex;flex-direction:column;gap:10px;margin-top:10px' });
+    const det = h('details', { class: 'card' }, h('summary', { style: 'cursor:pointer;font-weight:600' }, `${label} · from ${fmtDay(wk)}`, h('span', { class: 'small', style: 'font-weight:400' }, ` · ${weeks[wk].length} evening(s)`)), body);
+    let loaded = false;
+    const fill = async () => {
+      if (loaded) return; loaded = true; body.replaceChildren(h('div', { class: 'small' }, 'Loading…'));
+      const notes = await Promise.all(weeks[wk].map((d) => load('notes/' + d + '.json', data.sample)));
+      body.replaceChildren(...notes.filter(Boolean).map((x) => coachNotes(x)));
+    };
+    det.addEventListener('toggle', () => { if (det.open) fill(); });
+    if (i === 0) { det.open = true; fill(); }
+    sec.append(det);
+  });
+  return sec;
 }

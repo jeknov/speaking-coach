@@ -1,7 +1,7 @@
 // Progress, Skills and Badges views. Everything is drawn from state.json (rebuilt nightly
 // from the full raw log) plus today's live events.
-import * as d3 from './vendor/d3.js?v=20261126e';
-import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261126e';
+import * as d3 from './vendor/d3.js?v=20261126f';
+import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261126f';
 
 export const h = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);

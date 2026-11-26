@@ -1,7 +1,7 @@
 // Today tab: the day's plan (carried-over tasks first) and a full-screen runner per task kind.
-import { h, heroCards } from './progress.js?v=20261126e';
-import { logEvent, saveRecording, saveFile, localTime, localDate } from './store.js?v=20261126e';
-import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126e';
+import { h, heroCards } from './progress.js?v=20261126f';
+import { logEvent, saveRecording, saveFile, localTime, localDate } from './store.js?v=20261126f';
+import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126f';
 
 const ICON = { record: '🎙️', memory: '🧠', quiz: '🧩', text: '✍️', form: '📝', rating: '⭐', upload: '📤', check: '✅' };
 let ctx = null; // { state, plan, carried, events, sample, refresh, toast }
@@ -93,7 +93,7 @@ function workAhead(c, dd) {
       ...todo.map((t) => taskButton(t, null, lockedUntil(t, dd))))));
 }
 const fmtDay = (d) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
-function coachNotes(n) {
+export function coachNotes(n) {
   if (!n) return null;
   return h('section', { class: 'card', id: 'coach-notes', style: 'display:flex;flex-direction:column;gap:10px' },
     h('div', { class: 'label' }, `Coach's notes · ${fmtDay(n.date)}`),

@@ -1,0 +1,19 @@
+{
+ "date": "2027-02-05",
+ "went_well": "Your falling endings rose to 60%: in the stress drill, 7 of your 10 claims finished on a clear downward step.",
+ "mistakes": [
+  {
+   "title": "Questions disguised as statements",
+   "evidence": "3 of the 10 claims ended with a rising pitch, all on sentences longer than 15 words.",
+   "why": "At a leadership briefing, a rise at the end of a claim invites challenge instead of agreement.",
+   "try": "Split long claims into two sentences and land the second one on a low, slow final word."
+  },
+  {
+   "title": "Emphasis on the wrong word",
+   "evidence": "\"Multi-turn attacks succeed where single prompts fail\": the stress fell on \"attacks\", not on \"multi-turn\".",
+   "why": "The contrast is the point of the sentence; stressing it is what makes the claim memorable.",
+   "try": "Before reading, underline the one contrast word in each sentence and lean on it."
+  }
+ ],
+ "tomorrow": "Statement endings: let the last word drop and slow down."
+}
