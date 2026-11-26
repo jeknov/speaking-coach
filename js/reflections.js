@@ -1,9 +1,9 @@
 // Reflections tab: weekly reflections written by the nightly coach, a comparison with
 // reference speakers, and a way to add reference clips (analysed in the browser).
-import { h } from './progress.js?v=20261126';
-import { getJSON, logEvent } from './store.js?v=20261126';
-import { recorderBlock, showResults, closeRunner } from './today.js?v=20261126';
-import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126';
+import { h } from './progress.js?v=20261126b';
+import { getJSON, logEvent } from './store.js?v=20261126b';
+import { recorderBlock, showResults, closeRunner } from './today.js?v=20261126b';
+import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126b';
 
 const REF_METRICS = ['L1.fillers', 'L1.pace', 'L1.pause_breaks', 'L1.run_length', 'L1.volume_drop', 'L1.voice_clarity', 'L3.pitch_range', 'L3.falling_endings', 'L3.words_per_group'];
 const cache = {};
@@ -111,7 +111,7 @@ function openRefRunner(p, x, data) {
     h('div', { class: 'card', style: 'display:flex;flex-direction:column;gap:8px' }, h('b', {}, '1. Upload an audio or video file'), file),
     h('div', { class: 'card', style: 'display:flex;flex-direction:column;gap:8px' }, h('b', {}, '2. Or capture it: play the video out loud and record it here'),
       x.url ? h('a', { href: x.url, target: '_blank', rel: 'noopener' }, `Open ${x.speaker}'s video`) : null,
-      h('div', { class: 'small' }, 'Turn the volume up and keep the room quiet. Voice clarity reads lower through speakers, so that one metric is skipped for captured clips.'),
+      h('div', { class: 'small' }, 'Turn the volume up and keep the room quiet. Through speakers, only pace and fillers can be measured reliably; pauses, pitch and volume need an uploaded file.'),
       recorderBlock(t, (blob) => slot.replaceChildren(refAnalysis(p, x, blob, true, data)))),
     slot);
   file.addEventListener('change', () => { if (file.files[0]) slot.replaceChildren(refAnalysis(p, x, file.files[0], false, data)); });
@@ -131,11 +131,11 @@ function refAnalysis(p, x, blob, captured, data) {
       try { status.textContent = 'Transcribing (the first time downloads the speech model)…'; tm = transcriptMetrics(await transcribe(a, (q) => { status.textContent = `Downloading speech model… ${Math.round(q.progress || 0)}%`; }), ac, null); }
       catch (e) { status.textContent = 'Transcription did not run here, so pace and fillers are skipped.'; }
       const cand = candidates(ac, tm);
-      const keep = REF_METRICS.filter((m) => cand[m] != null && !(captured && m === 'L1.voice_clarity'));
+      const keep = (captured ? ['L1.pace', 'L1.fillers'] : REF_METRICS).filter((m) => cand[m] != null);
       area.append(showResults({ ...ac, ...(tm || {}) }));
       if (data.sample) { status.textContent = 'Sample mode: nothing saved.'; return; }
       for (const m of keep) await logEvent({ type: 'reference_measurement', persona: p.persona_id, speaker: x.speaker, metric_id: m, value: +cand[m], captured, tool: ANALYSIS_VERSION });
-      status.textContent = `Saved ${keep.length} measures for ${x.speaker}. They appear in your comparisons after tonight's update.`;
+      status.textContent = `Saved ${keep.length} measure(s) for ${x.speaker}${captured ? ' (captured clips keep only pace and fillers)' : ''}. They appear in your comparisons after tonight\'s update.`;
       go.remove(); area.append(h('button', { class: 'btn', onclick: () => closeRunner() }, 'Done'));
     } catch (e) { status.textContent = 'Something went wrong: ' + e.message; go.disabled = false; }
   });
