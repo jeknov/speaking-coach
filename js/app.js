@@ -1,7 +1,7 @@
-import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126d';
-import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126d';
-import { renderToday, doneMap } from './today.js?v=20261126d';
-import { renderReflections } from './reflections.js?v=20261126d';
+import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126e';
+import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126e';
+import { renderToday, doneMap } from './today.js?v=20261126e';
+import { renderReflections } from './reflections.js?v=20261126e';
 
 const $ = (s) => document.querySelector(s);
 const VIEWS = ['today', 'progress', 'skills', 'badges', 'reflections', 'settings'];
@@ -64,8 +64,8 @@ function live() {
 }
 
 function route() {
-  const [v, arg] = (location.hash.slice(1) || 'today').split('/');
-  return { view: VIEWS.includes(v) ? v : 'today', arg: arg || null };
+  const [v, ...rest] = (location.hash.slice(1) || 'today').split('/');
+  return { view: VIEWS.includes(v) ? v : 'today', arg: rest.join('/') || null };
 }
 
 function render() {
@@ -129,17 +129,30 @@ function renderSettings(el) {
     h('p', { class: 'small' }, `Speaking Coach 0.1 · device ${settings.device}`));
 }
 
-// Reference clips analysed today show at once; the nightly update makes them final.
-function mergeLiveReferences(state, events) {
+// Reference clips and speakers added today show at once; the nightly update makes them final.
+export function mergeLiveReferences(state, events) {
   if (!state || !state.references) return;
-  const ok = new Set(['L1.pace', 'L1.fillers']), by = {};
+  const ok = new Set(['L1.pace', 'L1.fillers']), per = {}, added = {};
   for (const e of events) {
+    if (e.type === 'reference_speaker' && e.persona && e.speaker) (added[e.persona] ||= []).push({ speaker: e.speaker, url: e.url || '' });
     if (e.type !== 'reference_measurement' || e.value == null || (e.captured && !ok.has(e.metric_id))) continue;
-    ((by[e.persona] ||= {})[e.metric_id] ||= []).push(+e.value);
+    (((per[e.persona] ||= {})[e.speaker || '?'] ||= {})[e.metric_id] ||= []).push(+e.value);
   }
-  for (const r of state.references) for (const [m, v] of Object.entries(by[r.persona_id] || {})) {
-    if (r.metrics && r.metrics[m] != null) continue;
-    const s = [...v].sort((a, b) => a - b); (r.metrics ||= {})[m] = Math.round(s[Math.floor(s.length / 2)] * 100) / 100;
+  const med = (v) => { const s = [...v].sort((a, b) => a - b); return Math.round(s[Math.floor(s.length / 2)] * 100) / 100; };
+  for (const r of state.references) {
+    r.exemplars ||= []; r.by_speaker ||= {};
+    for (const a of added[r.persona_id] || []) if (!r.exemplars.some((x) => x.speaker.toLowerCase() === a.speaker.toLowerCase())) r.exemplars.push(a);
+    for (const [sp, mv] of Object.entries(per[r.persona_id] || {})) for (const [m, v] of Object.entries(mv)) {
+      r.by_speaker[sp] ||= {}; if (r.by_speaker[sp][m] == null) r.by_speaker[sp][m] = med(v);
+    }
+    const stats = {};
+    for (const m of new Set(Object.values(r.by_speaker).flatMap((x) => Object.keys(x)))) {
+      const xs = Object.values(r.by_speaker).filter((x) => x[m] != null).map((x) => x[m]);
+      const mu = xs.reduce((a, b) => a + b, 0) / xs.length;
+      const sd = xs.length > 1 ? Math.sqrt(xs.reduce((a, b) => a + (b - mu) ** 2, 0) / (xs.length - 1)) : null;
+      stats[m] = { mean: Math.round(mu * 100) / 100, std: sd == null ? null : Math.round(sd * 100) / 100, n: xs.length };
+    }
+    if (Object.keys(stats).length) { r.stats = stats; r.metrics = Object.fromEntries(Object.entries(stats).map(([m, v]) => [m, v.mean])); }
   }
 }
 
