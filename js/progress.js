@@ -1,7 +1,7 @@
 // Progress, Skills and Badges views. Everything is drawn from state.json (rebuilt nightly
 // from the full raw log) plus today's live events.
-import * as d3 from './vendor/d3.js?v=20261126g';
-import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261126g';
+import * as d3 from './vendor/d3.js?v=20261127';
+import { critter, badgeArt, rankArt, RARITY } from './art.js?v=20261127';
 
 export const h = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
@@ -81,7 +81,7 @@ export function heroCards(state, dv, { compact } = {}) {
       h('div', { class: 'huge' }, fmtDate(p.current_level_expected_end)),
       h('div', { class: 'small' }, s.days_to_level_end >= 0 ? `In ${s.days_to_level_end} days` : 'Finishing today'),
       h('details', { class: 'info' }, h('summary', {}, h('i', { class: 'i' }, 'i'), ' Whole program'),
-        h('div', { class: 'body' }, `The whole program is projected to finish on ${fmtDate(p.projected_end)}, against a plan of ${fmtDate(p.original_end)}. ${p.days_added < 0 ? `You've gained ${-p.days_added} day(s) by working ahead` : p.days_added > 0 ? `${p.days_added} day(s) have been added by carried-over tasks or remedial weeks` : 'You are exactly on plan'}, and ${p.backlog} task(s) are in the backlog now. Overall, ${s.pct_complete}% of all tasks are done.`))),
+        h('div', { class: 'body' }, `The whole program is projected to finish on ${fmtDate(p.projected_end)}, against a plan of ${fmtDate(p.original_end)}. ${p.days_added < 0 ? `You've gained ${-p.days_added} day(s) by working ahead` : p.days_added > 0 ? `${p.days_added} day(s) have been added by carried-over tasks or remedial weeks` : 'You are exactly on plan'}${p.pause_days ? `, plus ${p.pause_days} planned pause day(s) (${(p.pauses || []).map((z) => z.reason).join(', ')})` : ''}, and ${p.backlog} task(s) are in the backlog now. Overall, ${s.pct_complete}% of all tasks are done.`))),
     h('div', { style: 'min-width:150px;flex:1;max-width:320px' }, h('div', { class: 'small' }, `${s.level_tasks_done} of ${s.level_tasks_total} level tasks done`), bar(s.level_pct)));
   if (compact) return finish;
   const nextStreak = [7, 30, 100].find((n) => n > p.streak) || 100;
@@ -136,7 +136,7 @@ export function thenVsNow(state, dv, onOpen) {
 }
 
 function calendar(state) {
-  const bg = { clean: 'var(--ok)', carried: 'var(--warn)', missed: 'var(--bad)', today: 'transparent' };
+  const bg = { clean: 'var(--ok)', carried: 'var(--warn)', missed: 'var(--bad)', today: 'transparent', paused: 'var(--ref)', ahead: 'var(--ok)' };
   const cal = h('div', { class: 'cal' });
   for (const d of state.daily) {
     const c = h('div', { class: 'day', title: `${fmtShort(d.date)} · ${d.tasks_done}/${d.tasks_due} done`, 'aria-label': `${fmtShort(d.date)}: ${d.tasks_done} of ${d.tasks_due} done`,
@@ -147,7 +147,7 @@ function calendar(state) {
   if (!state.daily.length) cal.append(h('div', { class: 'empty' }, 'Your first day appears here tonight.'));
   return h('section', { id: 'calendar' }, h('h2', { class: 'h2' }, 'Every day so far'),
     h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'background:var(--ok)' }), 'All done ⭐'), h('span', {}, h('i', { style: 'background:var(--warn)' }), 'Carried over'),
-      h('span', {}, h('i', { style: 'background:var(--bad)' }), 'Missed'), h('span', {}, h('i', { style: 'border:2px solid var(--fg)' }), 'Today'), h('span', {}, 'B = baseline week')), cal);
+      h('span', {}, h('i', { style: 'background:var(--bad)' }), 'Missed'), h('span', {}, h('i', { style: 'background:var(--ref)' }), 'Planned pause'), h('span', {}, h('i', { style: 'border:2px solid var(--fg)' }), 'Today'), h('span', {}, 'B = baseline week')), cal);
 }
 
 export function renderProgress(el, state, dv, onOpen) {

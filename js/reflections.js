@@ -1,9 +1,9 @@
 // Reflections tab: weekly reflections written by the nightly coach, a comparison with
 // reference speakers, and a way to add reference clips (analysed in the browser).
-import { h } from './progress.js?v=20261126g';
-import { getJSON, logEvent, list as ghList } from './store.js?v=20261126g';
-import { recorderBlock, showResults, closeRunner, coachNotes } from './today.js?v=20261126g';
-import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126g';
+import { h } from './progress.js?v=20261127';
+import { getJSON, logEvent, list as ghList } from './store.js?v=20261127';
+import { recorderBlock, showResults, closeRunner, coachNotes } from './today.js?v=20261127';
+import { decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261127';
 
 const REF_METRICS = ['L1.fillers', 'L1.pace', 'L1.pause_breaks', 'L1.run_length', 'L1.volume_drop', 'L1.voice_clarity', 'L3.pitch_range', 'L3.falling_endings', 'L3.words_per_group'];
 const cache = {};

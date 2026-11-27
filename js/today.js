@@ -1,7 +1,7 @@
 // Today tab: the day's plan (carried-over tasks first) and a full-screen runner per task kind.
-import { h, heroCards } from './progress.js?v=20261126g';
-import { logEvent, saveRecording, saveFile, localTime, localDate } from './store.js?v=20261126g';
-import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261126g';
+import { h, heroCards } from './progress.js?v=20261127';
+import { logEvent, saveRecording, saveFile, localTime, localDate } from './store.js?v=20261127';
+import { startRecorder, decode16k, analyze, transcribe, transcriptMetrics, candidates, ANALYSIS_VERSION } from './audio.js?v=20261127';
 
 const ICON = { record: '🎙️', memory: '🧠', quiz: '🧩', text: '✍️', form: '📝', rating: '⭐', upload: '📤', check: '✅' };
 let ctx = null; // { state, plan, carried, events, sample, refresh, toast }
@@ -37,7 +37,7 @@ export function renderToday(el, c, dv) {
   if (!all.length) list.append(h('div', { class: 'empty' }, c.plan === null ? "Today's plan arrives at 8:00. Pull to refresh, or tap ⟳." : 'Nothing planned today. Enjoy the rest day.'));
   for (const slot of ['Morning', 'Midday', 'Afternoon', 'Evening']) {
     const ts = all.filter((t) => (t.carried ? 'Morning' : t.slot) === slot); if (!ts.length) continue;
-    list.append(h('div', { class: 'slot-h' }, `${slot} · ${ts[0].carried ? '08:00' : ts[0].time}`));
+    list.append(h('div', { class: 'slot-h' }, `${slot} · ${ts[0].carried ? '10:00' : ts[0].time}`));
     const ul = h('div', { class: 'slots' });
     for (const t of ts) {
       const d = done[t.task_id];

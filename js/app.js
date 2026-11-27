@@ -1,7 +1,7 @@
-import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261126g';
-import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261126g';
-import { renderToday, doneMap } from './today.js?v=20261126g';
-import { renderReflections } from './reflections.js?v=20261126g';
+import { settings, getJSON, testConnection, flush, pendingCount, eventsFor, localDate } from './store.js?v=20261127';
+import { h, derive, renderProgress, renderSkills, renderBadges } from './progress.js?v=20261127';
+import { renderToday, doneMap } from './today.js?v=20261127';
+import { renderReflections } from './reflections.js?v=20261127';
 
 const $ = (s) => document.querySelector(s);
 const VIEWS = ['today', 'progress', 'skills', 'badges', 'reflections', 'settings'];
